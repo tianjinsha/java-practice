@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.train.db</groupId>
+    <artifactId>db-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>train-jdbc</module>
+        <module>train-common</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.Edgware.version>Edgware.SR5</spring-cloud.Edgware.version>
+        <platform-bom.version>Brussels-SR14</platform-bom.version>
+        <db-project.version>1.0-SNAPSHOT</db-project.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${platform-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.Edgware.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <finalName>db-project</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source><!-- 源代码使用的开发版本 -->
+                    <target>${java.version}</target><!-- 需要生成的目标class文件的编译版本 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,11 @@
+server:
+  port: 1021
+spring:
+  application:
+    name: train-jpa
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/traindb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    password: 1234
