@@ -10,6 +10,7 @@
     <modules>
         <module>train-jdbc</module>
         <module>train-common</module>
+        <module>train-jpa</module>
     </modules>
     <packaging>pom</packaging>
 
