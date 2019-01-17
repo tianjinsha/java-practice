@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Iterator;
@@ -21,7 +20,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class TrainJpaApplicationTests {
+public class JpaTests {
     @Autowired
     IRoleService roleService;
 

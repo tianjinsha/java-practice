@@ -9,8 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>train-jdbc</module>
-        <module>train-common</module>
         <module>train-jpa</module>
+        <module>train-querydsl</module>
+        <module>train-common</module>
     </modules>
     <packaging>pom</packaging>
 
