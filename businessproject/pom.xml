@@ -11,6 +11,7 @@
     <modules>
         <module>train-common</module>
         <module>train-exception</module>
+        <module>train-properties</module>
     </modules>
 
     <properties>
