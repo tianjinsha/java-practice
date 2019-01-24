@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>后台管理</title>
+    <link href="/css/login.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="login_box">
+    <div class="login_l_img">
+        <img src="images/login-img.png"/>
+    </div>
+    <div class="login">
+        <div class="login_logo">
+            <a href="#"><img src="images/login_logo.png"/></a>
+        </div>
+        <div class="login_name">
+            <p>后台管理系统</p>
+        </div>
+        <form action="/authentication/form" method="post">
+            <dl>
+                <dd><input name="username" type="text" value="" placeholder="用户名"></dd>
+                <dd><input name="password" type="password" id="password" placeholder="密码"/></dd>
+                <dd><input type="checkbox" class="rememberme" name="remember-me" id="rememberme" checked>
+                    <label for="rememberme" class="rememberme-label">记住我</label>
+                </dd>
+                <!--<dd class="dd-code">
+                    <input name="imageCode" class="code" type="text">
+                    <img id="codeImg" alt="" src="/code/image" onclick="loadimage();">
+                </dd>-->
+                <dd><input value="登录" style="width:100%;" type="submit"></dd>
+            </dl>
+        </form>
+    </div>
+    <div class="copyright">后台管理系统 版权所有©2018-2019 技术支持电话：000-00000000</div>
+</div>
+<script type="text/javascript">
+    function loadimage() {
+        document.getElementById("codeImg").src = "/code/image?" + Math.random();
+    }
+</script>
+</body>
+</html>
