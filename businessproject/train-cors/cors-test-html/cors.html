@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cors test</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="content">显示内容:</div><br/>
+    <label>url:</label><input type="text" name="url" value="http://127.0.0.1:1020/method1/member"
+                              style="width: 350px;height: 36px"><br/>
+    <button class="cros1">cors跨域测试-1</button>
+</div>
+</body>
+<script>
+    $(function(){
+
+        $(".cros1").click(function () {
+            var url=$("input[name=url]").val();
+            $.ajax({
+                url:url,
+                method:"GET",
+                success:function (data,status,xhr) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(data);
+                    $(".content").append(data);
+                }
+            });
+        });
+
+    });
+</script>
+</html>
