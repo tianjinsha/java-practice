@@ -14,6 +14,7 @@
         <module>train-security-core</module>
         <module>train-security-browser</module>
         <module>train-security-app</module>
+        <module>train-security-core</module>
     </modules>
 
     <properties>
