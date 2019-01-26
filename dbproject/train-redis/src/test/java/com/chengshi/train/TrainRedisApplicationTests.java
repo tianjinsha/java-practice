@@ -105,5 +105,21 @@ public class TrainRedisApplicationTests {
         redisUtil_1.set("json_object",JSON.toJSONString(member1));
 
     }
+
+
+    @Test
+    public void test5(){
+        Member member1=new Member("zhangsan",24);
+        Member member2=new Member("lisi",45);
+
+        List<Member> list=new ArrayList<>();
+        list.add(member1);
+        list.add(member2);
+        redisUtil_2.set("list",list);
+
+        List<Member> list2 = (List<Member>) redisUtil_2.get("list");
+
+        log.info(list2.toString());
+    }
 }
 
