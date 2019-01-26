@@ -12,6 +12,7 @@
         <module>train-jpa</module>
         <module>train-querydsl</module>
         <module>train-common</module>
+        <module>train-cache</module>
     </modules>
     <packaging>pom</packaging>
 
