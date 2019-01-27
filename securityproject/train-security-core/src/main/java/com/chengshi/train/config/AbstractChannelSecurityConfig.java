@@ -38,9 +38,6 @@ public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter 
     //401
     private TrainAuthenticationEntryPoint trainAuthenticationEntryPoint;
 
-    @Autowired
-    //403
-    private TrainAccessDeniedHandler trainAccessDeniedHandler;
 
     @Autowired
     private DataSource dataSource;
@@ -54,18 +51,21 @@ public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter 
 
     protected void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {
         http.formLogin()
+                //登陆页
                 .loginPage(trainSecurityProperties.getLoginPage())
+//                //登陆处理的接口
                 .loginProcessingUrl(trainSecurityProperties.getLoginProcessUrl())
-                .successHandler(trainAuthenticationSuccessHandler)
-                .failureHandler(trainAuthenticationFailureHandler)
 
-                .and()
-                .exceptionHandling()
-                .accessDeniedHandler(trainAccessDeniedHandler)
+                //登陆成功或则失败的处理器
+//                .successHandler(trainAuthenticationSuccessHandler)
+//                .failureHandler(trainAuthenticationFailureHandler)
 
+                //没有登陆
                 .and()
                 .httpBasic()
                 .authenticationEntryPoint(trainAuthenticationEntryPoint)
+
+                //退出
                 .and()
                 .logout()
                 .logoutSuccessHandler(trainLogoutSuccessHandler)

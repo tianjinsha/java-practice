@@ -27,13 +27,16 @@ public class TrainAuthenticationFailureHandler extends SimpleUrlAuthenticationFa
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         log.info("登陆失败！");
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
         if (LoginResponseType.JSON.name().equals(trainSecurityProperties.getLoginType())) {
+            log.info("json");
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setHeader("Content-Type", "application/json;charset=utf-8");
             ResponseBean responseBean = new ResponseBean(1006, "登陆验证失败");
             response.getWriter().write(objectMapper.writeValueAsString(responseBean));
             response.getWriter().flush();
         }else{
+            log.info("redirect");
+//            setDefaultFailureUrl("/signIn.html");
             super.onAuthenticationFailure(request, response, e);
         }
     }

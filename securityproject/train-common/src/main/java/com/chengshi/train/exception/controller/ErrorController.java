@@ -10,13 +10,13 @@ public class ErrorController {
 
     @GetMapping("/404")
     public String page404(){
-        log.info("404:访问 的也页面不存在！");
-        return "/error/404";
+        log.info("404:访问的也页面不存在！");
+        return "/error/404.html";
     }
 
-    @GetMapping("/405")
-    public String page405(){
-        System.out.println("This is 404 e");
+    @GetMapping("/401")
+    public String page401(){
+        log.info("401:你还没有登陆！");
         return "/error/401.html";
     }
 

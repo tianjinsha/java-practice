@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "train.security")
 public class TrainSecurityProperties {
 
+    private JwtProperties jwt=new JwtProperties();
+
     private String loginType="JSON";
 
     private String loginPage="/authentication/require";
@@ -17,4 +19,5 @@ public class TrainSecurityProperties {
     private String signUpUrl="/signIn.html";
 
     private int rememberMeSeconds=7200;
+
 }
