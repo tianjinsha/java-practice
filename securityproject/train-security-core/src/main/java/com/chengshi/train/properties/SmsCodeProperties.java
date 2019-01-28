@@ -12,11 +12,24 @@ public class SmsCodeProperties {
      */
     private int length = 6;
     /**
-     * 验证码过期时间
+     * 验证码过期时间(分钟)
      */
-    private int expireIn = 60;
+    private int expireIn = 15;
     /**
      * 验证码的生成地址
      */
     private String url;
+
+    // 短信应用SDK AppID
+    private int appid = 1400168552; // 1400开头
+
+    // 短信应用SDK AppKey
+    private String appkey ="dd5aa4b06ac6de9071fa06c85a11f7da";
+
+    // 短信模板ID，需要在短信应用中申请
+    private int templateId=274149;
+
+    // 签名
+    private String smsSign = "田金山的网站分享快乐";
+
 }
