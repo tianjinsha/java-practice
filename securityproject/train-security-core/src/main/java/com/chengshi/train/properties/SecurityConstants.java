@@ -16,6 +16,11 @@ public class SecurityConstants {
     public static final String DEFAULT_VALIDATE_CODE_URL_PREFIX = "/code";
 
     /**
+     * 发送短信验证码 或 验证短信验证码时，传递手机号的参数的名称
+     */
+    public static final String DEFAULT_PARAMETER_NAME_MOBILE =  "mobile";
+
+    /**
      * 当请求需要身份认证时，默认跳转的url
      *
      * @see SecurityController

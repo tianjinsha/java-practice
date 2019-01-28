@@ -1,6 +1,8 @@
 package com.chengshi.train.validate;
 
 import com.chengshi.train.validate.image.ImageCodeGenerator;
+import com.chengshi.train.validate.sms.DefaultSmsCodeSender;
+import com.chengshi.train.validate.sms.SmsCodeSender;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,4 +17,9 @@ public class ValidateCodeBeanConfig {
         return codeGenerator;
     }
 
+    @Bean
+    @ConditionalOnMissingBean(SmsCodeSender.class)
+    public SmsCodeSender smsCodeSender() {
+        return new DefaultSmsCodeSender();
+    }
 }

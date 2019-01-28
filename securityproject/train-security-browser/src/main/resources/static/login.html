@@ -1,0 +1,137 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-X-admin2.0</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+
+</head>
+<body class="login-bg">
+
+<div class="login layui-anim layui-anim-up">
+    <div class="message">齐行社1.0-管理登录</div>
+    <div id="darkbannerwrap"></div>
+    <!---->
+    <!--用户名密码登录-->
+    <div class="form-code">
+        <form method="post" class="layui-form " action="/authentication/form">
+            <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+            <hr class="hr15">
+            <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+            <hr class="hr15">
+            <div class="qxs-input">
+                <input name="imageCode" lay-verify="required" placeholder="验证码" type="text" maxlength="6"
+                       class="layui-input">
+                <img id="codeImg" onclick="loadimage()" class="qxs-input-pt qxs-codeImg" src="/code/image">
+            </div>
+            <hr class="hr15">
+            <div class="qxs-input">
+                <div><input type="checkbox" name="remember-me" lay-text="开启|停用" checked="" lay-skin="switch">
+                    <div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch">
+                        <em>开启</em><i></i>
+                    </div>
+                    <span>记住我</span></div>
+                <a href="#">忘记密码？</a>
+            </div>
+            <hr class="hr15">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20">
+        </form>
+    </div>
+    <!---->
+    <!--手机短信登录-->
+    <div class="form-sms">
+        <form method="post" class="layui-form" action="/authentication/mobile">
+            <input name="mobile" class="mobile" placeholder="手机号码" type="text" lay-verify="required" class="layui-input"
+                   value="12345654321">
+            <hr class="hr15">
+            <div class="qxs-input">
+                <input name="smsCode" lay-verify="required" placeholder="验证码" type="text" maxlength="6"
+                       class="layui-input">
+                <a onclick="sendSms(this)" class="qxs-input-pt qxs-cms">点击发送</a>
+            </div>
+            <hr class="hr15">
+            <div class="qxs-input">
+                <div><input type="checkbox" name="remember-me" lay-text="开启|停用" checked="" lay-skin="switch">
+                    <div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch">
+                        <em>开启</em><i></i>
+                    </div>
+                    <span>记住我</span></div>
+            </div>
+            <hr class="hr15">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20">
+        </form>
+    </div>
+    <!---->
+    <!--第三方登录-->
+    <div class="more-sign">
+        <h6>
+            其他方式登录
+        </h6>
+        <a class="qxs-display-none password-icon-a" href="javascript:void(0);" title="密码登录">
+            <div class="password-icon"></div>
+        </a>
+        <a class="mobile-icon-a" href="javascript:void(0);" title="手机登录">
+            <div class="mobile-icon"></div>
+        </a>
+        <a class="qq-icon-a" href="#" title="QQ登录">
+            <div class="qq-icon"></div>
+        </a>
+        <a class=weix-icon-a" href="#" title="微信登录">
+            <div class="weix-icon"></div>
+        </a>
+    </div>
+</div>
+
+<script>
+
+    layui.use('form', function () {
+        var form = layui.form;
+        // layer.msg('疯狂加载中……', function () {
+        //     //关闭后的操作
+        //
+        // });
+        //监听提交
+        // form.on('submit(login)', function (data) {
+        //     // alert(888)
+        //     layer.msg(JSON.stringify(data.field), function () {
+        //         location.href = 'index.html'
+        //     });
+        //     return false;
+        // });
+    });
+
+    function loadimage() {
+        console.log("attr");
+        $('#codeImg').attr("src", "/code/image?" + Math.random());
+    }
+
+    function sendSms(obj) {
+        var value = $(obj).parents(".form-sms").find(".mobile").val();
+        console.log("value::" + value)
+        $.get("/code/sms?mobile=" + value, function (data, status) {
+            console.log("数据: " + data + "\n状态: " + status);
+        });
+    }
+
+
+</script>
+
+<!-- 底部结束 -->
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.chengshi.train.config;
 
 
+import com.chengshi.train.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.chengshi.train.properties.SecurityConstants;
 import com.chengshi.train.properties.TrainSecurityProperties;
 import com.chengshi.train.validate.ValidateCodeSecurityConfig;
@@ -28,12 +29,20 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
+    /**
+     * 短信验证码配置器
+     */
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         applyPasswordAuthenticationConfig(http);
 
         http
                 .apply(validateCodeSecurityConfig)
+                .and()
+                .apply(smsCodeAuthenticationSecurityConfig)
                 .and()
                 .rememberMe()
                 .tokenRepository(persistentTokenRepository())
@@ -46,8 +55,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         trainSecurityProperties.getLoginProcessUrl(),
                         trainSecurityProperties.getLoginPage(),
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
-                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*",
-                        "/logout","/js/**", "/images/**", "/css/**", "/resources/**","/error/401.html").permitAll()
+                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
+                        "/logout", "/js/**", "/images/**", "/css/**", "/js/**", "/lib/**", "/static/**", "/login-error.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
