@@ -31,12 +31,13 @@ public class TrainAuthenticationFailureHandler extends SimpleUrlAuthenticationFa
             log.info("json");
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setHeader("Content-Type", "application/json;charset=utf-8");
-            ResponseBean responseBean = new ResponseBean(1006, "登陆验证失败");
+            ResponseBean responseBean = new ResponseBean(1006, e.getMessage());
             response.getWriter().write(objectMapper.writeValueAsString(responseBean));
             response.getWriter().flush();
         }else{
             log.info("redirect");
-//            setDefaultFailureUrl("/signIn.html");
+            log.info(e.getMessage());
+            setDefaultFailureUrl("/login-error.html");
             super.onAuthenticationFailure(request, response, e);
         }
     }

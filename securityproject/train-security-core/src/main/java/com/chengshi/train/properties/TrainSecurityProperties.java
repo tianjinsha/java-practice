@@ -10,13 +10,15 @@ public class TrainSecurityProperties {
 
     private JwtProperties jwt=new JwtProperties();
 
+    private ValidateCodeProperties code=new ValidateCodeProperties();
+
     private String loginType="JSON";
 
-    private String loginPage="/authentication/require";
+    private String loginPage=SecurityConstants.DEFAULT_UNAUTHENTICATION_URL;
 
-    private String loginProcessUrl="/authentication/form";
+    private String loginProcessUrl=SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM;
 
-    private String signUpUrl="/signIn.html";
+    private String signUpUrl=SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
 
     private int rememberMeSeconds=7200;
 

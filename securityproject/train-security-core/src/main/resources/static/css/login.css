@@ -30,6 +30,7 @@ a {
 
 img {
     border: none;
+    cursor: pointer;
 }
 
 .login_box {

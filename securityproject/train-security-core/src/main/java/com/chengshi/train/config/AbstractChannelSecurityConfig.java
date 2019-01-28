@@ -57,19 +57,20 @@ public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter 
                 .loginProcessingUrl(trainSecurityProperties.getLoginProcessUrl())
 
                 //登陆成功或则失败的处理器
-//                .successHandler(trainAuthenticationSuccessHandler)
-//                .failureHandler(trainAuthenticationFailureHandler)
+                .successHandler(trainAuthenticationSuccessHandler)
+                .failureHandler(trainAuthenticationFailureHandler)
 
                 //没有登陆
-                .and()
-                .httpBasic()
-                .authenticationEntryPoint(trainAuthenticationEntryPoint)
+//                .and()
+//                .httpBasic()
+//                .authenticationEntryPoint(trainAuthenticationEntryPoint)
 
                 //退出
-                .and()
-                .logout()
-                .logoutSuccessHandler(trainLogoutSuccessHandler)
-                .deleteCookies("JSESSIONID");
+//                .and()
+//                .logout()
+//                .logoutSuccessHandler(trainLogoutSuccessHandler)
+//                .deleteCookies("JSESSIONID")
+        ;
     }
 
     @Bean

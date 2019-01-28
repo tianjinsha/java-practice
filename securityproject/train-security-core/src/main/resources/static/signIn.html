@@ -25,13 +25,13 @@
             <dl>
                 <dd><input name="username" type="text" value="" placeholder="用户名"></dd>
                 <dd><input name="password" type="password" id="password" placeholder="密码"/></dd>
+                <dd class="dd-code">
+                    <input name="imageCode" class="code" type="text">
+                    <img id="codeImg" alt="" src="/code/image" onclick="loadimage();">
+                </dd>
                 <dd><input type="checkbox" class="rememberme" name="remember-me" id="rememberme" checked>
                     <label for="rememberme" class="rememberme-label">记住我</label>
                 </dd>
-                <!--<dd class="dd-code">
-                    <input name="imageCode" class="code" type="text">
-                    <img id="codeImg" alt="" src="/code/image" onclick="loadimage();">
-                </dd>-->
                 <dd><input value="登录" style="width:100%;" type="submit"></dd>
             </dl>
         </form>
