@@ -1,11 +1,14 @@
 package com.chengshi.train.controller;
 
+import com.chengshi.train.properties.TrainSecurityProperties;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IndexController {
+
+    TrainSecurityProperties properties;
     @GetMapping("/ping")
     public String ping(){
         return "ping success !";
@@ -26,5 +29,9 @@ public class IndexController {
     @GetMapping("/ex")
     public String ex(){
         throw new RuntimeException("运行错误");
+    }
+
+    public String test(){
+        return properties.getSocial().getQq().getAppId();
     }
 }

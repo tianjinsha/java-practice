@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -35,6 +36,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
+    @Autowired
+    private SpringSocialConfigurer trainSocialSecurityConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         applyPasswordAuthenticationConfig(http);
@@ -43,6 +47,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 .apply(validateCodeSecurityConfig)
                 .and()
                 .apply(smsCodeAuthenticationSecurityConfig)
+                .and()
+                .apply(trainSocialSecurityConfig)
                 .and()
                 .rememberMe()
                 .tokenRepository(persistentTokenRepository())
@@ -56,7 +62,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         trainSecurityProperties.getLoginPage(),
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-                        "/logout", "/js/**", "/images/**", "/css/**", "/js/**", "/lib/**", "/static/**", "/login-error.html").permitAll()
+                        "/logout", "/js/**", "/images/**", "/css/**", "/js/**", "/lib/**", "/static/**","/auth/**", "/login-error.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

@@ -18,9 +18,9 @@ public class ExceptionConfig {
         return registry -> {
             ErrorPage page401=new ErrorPage(HttpStatus.UNAUTHORIZED,"/error/401.html");
             ErrorPage page403 = new ErrorPage(HttpStatus.FORBIDDEN, "/error/403.html");
-            ErrorPage page404 = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404.html");
+//            ErrorPage page404 = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404.html");
             ErrorPage page500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error/500.html");
-            registry.addErrorPages(page401,page403,page404, page500);
+            registry.addErrorPages(page401,page403, page500);
         };
     }
 }

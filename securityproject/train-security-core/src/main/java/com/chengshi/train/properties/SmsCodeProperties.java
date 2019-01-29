@@ -14,7 +14,7 @@ public class SmsCodeProperties {
     /**
      * 验证码过期时间(分钟)
      */
-    private int expireIn = 15;
+    private int expireIn = 60;
     /**
      * 验证码的生成地址
      */
