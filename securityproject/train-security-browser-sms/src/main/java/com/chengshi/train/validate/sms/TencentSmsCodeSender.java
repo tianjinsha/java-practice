@@ -29,6 +29,7 @@ public class TencentSmsCodeSender implements SmsCodeSender{
             SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
             SmsSingleSenderResult result = ssender.sendWithParam("86",mobile,
                     templateId, params, smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
+            log.info("短信验证码："+code);
             log.info(result.toString());
         } catch (HTTPException e) {
             // HTTP响应码错误
@@ -54,21 +55,6 @@ public class TencentSmsCodeSender implements SmsCodeSender{
 
         String smsSign = "田金山的网站分享快乐";
 
-//        try {
-//            SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
-//            SmsSingleSenderResult result = ssender.send(0, "86", phoneNumbers[0],
-//                    "【分享快乐】您的验证码是: 5678", "", "");
-//            log.info(result.toString());
-//        } catch (HTTPException e) {
-//            // HTTP响应码错误
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            // json解析错误
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // 网络IO错误
-//            e.printStackTrace();
-//        }
 
 
     }
