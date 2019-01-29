@@ -3,6 +3,7 @@ package com.chengshi.train.social.qq.connect;
 import com.chengshi.train.social.qq.api.QQ;
 import com.chengshi.train.social.qq.api.QQImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
+import org.springframework.social.oauth2.OAuth2Template;
 
 public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {
     private String appId;
@@ -12,7 +13,8 @@ public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {
     private static final String URL_ACCESS_TOKEN = "https://graph.qq.com/oauth2.0/token";
 
     public QQServiceProvider(String appId, String appSecret) {
-        super(new QQOAuth2Template(appId, appSecret, URL_AUTHORIZE, URL_ACCESS_TOKEN));
+//        super(new QQOAuth2Template(appId, appSecret, URL_AUTHORIZE, URL_ACCESS_TOKEN));
+        super(new OAuth2Template(appId, appSecret, URL_AUTHORIZE, URL_ACCESS_TOKEN));
         this.appId = appId;
     }
 

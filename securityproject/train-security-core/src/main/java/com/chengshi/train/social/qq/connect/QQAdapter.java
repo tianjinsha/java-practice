@@ -9,6 +9,7 @@ import org.springframework.social.connect.UserProfile;
 public class QQAdapter implements ApiAdapter<QQ> {
     @Override
     public boolean test(QQ qq) {
+        //判断qq请求是否通畅
         return true;
     }
 
