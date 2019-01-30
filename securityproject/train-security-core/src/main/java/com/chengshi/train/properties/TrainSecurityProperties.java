@@ -12,7 +12,7 @@ public class TrainSecurityProperties {
 
     private ValidateCodeProperties code=new ValidateCodeProperties();
 
-    private SocialProperties social=new SocialProperties();
+    private TrainSocialProperties social=new TrainSocialProperties();
     private String loginType="JSON";
 
     private String loginPage=SecurityConstants.DEFAULT_UNAUTHENTICATION_URL;

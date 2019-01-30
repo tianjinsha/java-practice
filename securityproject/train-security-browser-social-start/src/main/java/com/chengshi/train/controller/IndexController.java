@@ -31,7 +31,4 @@ public class IndexController {
         throw new RuntimeException("运行错误");
     }
 
-    public String test(){
-        return properties.getSocial().getQq().getAppId();
-    }
 }
