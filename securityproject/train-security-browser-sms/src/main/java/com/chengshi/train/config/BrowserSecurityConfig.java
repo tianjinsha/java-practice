@@ -51,7 +51,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        trainSecurityProperties.getSignUpUrl(),
+                        trainSecurityProperties.getSignInUrl(),
                         trainSecurityProperties.getLoginProcessUrl(),
                         trainSecurityProperties.getLoginPage(),
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,

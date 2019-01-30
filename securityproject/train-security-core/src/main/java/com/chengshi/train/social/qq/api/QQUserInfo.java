@@ -32,6 +32,11 @@ public class QQUserInfo {
      * 出生年月
      */
     private String year;
+
+    /**
+     * 星座
+     */
+    private String constellation;
     /**
      * 	用户在QQ空间的昵称。
      */

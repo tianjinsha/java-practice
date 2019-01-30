@@ -42,7 +42,7 @@ public class AppSecurityconfig extends AbstractChannelSecurityConfig {
                 .authorizeRequests()
                 .antMatchers(trainSecurityProperties.getLoginPage(),
                         trainSecurityProperties.getLoginProcessUrl(),
-                        trainSecurityProperties.getSignUpUrl(),
+                        trainSecurityProperties.getSignInUrl(),
                         "/logout", "/js/**", "/images/**", "/css/**", "/static/**").permitAll()
                 .anyRequest().authenticated()
 

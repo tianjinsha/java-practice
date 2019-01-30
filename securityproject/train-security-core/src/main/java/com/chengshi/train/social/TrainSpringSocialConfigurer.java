@@ -10,7 +10,7 @@ public class TrainSpringSocialConfigurer extends SpringSocialConfigurer {
     public TrainSpringSocialConfigurer(String filterProcessesUrl) {
         this.filterProcessesUrl = filterProcessesUrl;
     }
-    @SuppressWarnings("unchecked")
+
     @Override
     protected <T> T postProcess(T object) {
         SocialAuthenticationFilter filter = (SocialAuthenticationFilter) super.postProcess(object);

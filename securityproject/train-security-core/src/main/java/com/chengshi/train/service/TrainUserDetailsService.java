@@ -41,7 +41,7 @@ public class TrainUserDetailsService implements UserDetailsService , SocialUserD
     }
 
     private SocialUserDetails buildUser(String userId) {
-        Member user=userRepository.findByUsername("lisi");
+        Member user=userRepository.findByUsername(userId);
         // 根据用户名查找用户信息
         //根据查找到的用户信息判断用户是否被冻结
         return new SocialUser(userId, user.getPassword(),

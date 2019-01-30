@@ -26,34 +26,34 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private TrainSecurityProperties properties;
 
-//    @Autowired(required = false)
-//    private ConnectionSignUp connectionSignUp;
+    @Autowired(required = false)
+    private ConnectionSignUp connectionSignUp;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
         repository.setTablePrefix("train_");
-//        if(connectionSignUp != null) {
-//            repository.setConnectionSignUp(connectionSignUp);
-//        }
+        if(connectionSignUp != null) {
+            repository.setConnectionSignUp(connectionSignUp);
+        }
         return repository;
     }
 
 
+    //回调
     @Bean
     public SpringSocialConfigurer trainSocialSecurityConfig() {
-//        String filterProcessesUrl = properties.getSocial().getFilterProcessesUrl();
-//        TrainSpringSocialConfigurer configurer = new TrainSpringSocialConfigurer(filterProcessesUrl);
-        SpringSocialConfigurer configurer= new SpringSocialConfigurer();
-//        configurer.signupUrl(properties.getSignUpUrl());
+        String filterProcessesUrl = properties.getSocial().getFilterProcessesUrl();
+        TrainSpringSocialConfigurer configurer = new TrainSpringSocialConfigurer(filterProcessesUrl);
+        configurer.signupUrl(properties.getSignUpUrl());
         return configurer;
     }
 
-//    @Bean
-//    public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
-//        return new ProviderSignInUtils(connectionFactoryLocator,
-//                getUsersConnectionRepository(connectionFactoryLocator)) {
-//        };
-//    }
+    @Bean
+    public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
+        return new ProviderSignInUtils(connectionFactoryLocator,
+                getUsersConnectionRepository(connectionFactoryLocator)) {
+        };
+    }
 }

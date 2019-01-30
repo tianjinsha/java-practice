@@ -35,7 +35,7 @@ public class TrainLogoutSuccessHandler  extends SimpleUrlLogoutSuccessHandler {
             response.getWriter().flush();
         }else{
             log.info("注销后跳转！");
-            setDefaultTargetUrl(trainSecurityProperties.getSignUpUrl());
+            setDefaultTargetUrl(trainSecurityProperties.getSignInUrl());
             super.onLogoutSuccess(request,response,authentication);
         }
     }

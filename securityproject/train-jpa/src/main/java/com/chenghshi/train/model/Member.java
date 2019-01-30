@@ -11,6 +11,9 @@ public class Member {
     private String password;
    private List<String> roles;
 
+    public Member() {
+    }
+
     public Member(String username, String password, List<String> roles) {
         this.username = username;
         this.password = password;

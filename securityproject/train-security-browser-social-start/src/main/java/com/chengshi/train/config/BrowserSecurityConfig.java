@@ -57,12 +57,16 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
+                        trainSecurityProperties.getSignInUrl(),
                         trainSecurityProperties.getSignUpUrl(),
                         trainSecurityProperties.getLoginProcessUrl(),
                         trainSecurityProperties.getLoginPage(),
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-                        "/logout", "/js/**", "/images/**", "/css/**", "/js/**", "/lib/**", "/static/**","/auth/**", "/login-error.html").permitAll()
+                        "/logout", "/js/**", "/images/**", "/css/**", "/js/**", "/lib/**",
+                        "/static/**","/auth/**","/qqLogin/**",
+                        "/user/regist","/me",
+                        "/login/**", "/login-error.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
