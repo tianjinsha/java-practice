@@ -1,9 +1,12 @@
 package com.chengshi.train.social;
 
 import com.chengshi.train.properties.TrainSecurityProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -17,9 +20,11 @@ import org.springframework.social.security.SpringSocialConfigurer;
 import javax.sql.DataSource;
 
 
+@Slf4j
 @Configuration
 @EnableSocial
 public class SocialConfig extends SocialConfigurerAdapter {
+
     @Autowired
     private DataSource dataSource;
 
@@ -34,6 +39,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
         repository.setTablePrefix("train_");
+        log.info("jdbc2:::::::::::::::::::::");
         if(connectionSignUp != null) {
             repository.setConnectionSignUp(connectionSignUp);
         }
@@ -47,7 +53,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
         String filterProcessesUrl = properties.getSocial().getFilterProcessesUrl();
         TrainSpringSocialConfigurer configurer = new TrainSpringSocialConfigurer(filterProcessesUrl);
         configurer.signupUrl(properties.getSignUpUrl());
+
         return configurer;
+
     }
 
     @Bean

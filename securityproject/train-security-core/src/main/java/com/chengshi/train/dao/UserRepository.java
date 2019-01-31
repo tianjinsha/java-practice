@@ -21,6 +21,7 @@ public class UserRepository {
         users.put("zhangsan",new Member("zhangsan","$2a$10$q5Evb.wibLWiroHUA3tj9ekCBBGjkZ8D.wWLebYnYJeGX0D9lbFXu", Arrays.asList(role1)));
         users.put("lisi",new Member("lisi","$2a$10$UEf1ExTpyRQzlsIrpg4CCu5JVeA/D4g5p.7J7bg/.sgalhELPzpYa", Arrays.asList(role2)));
         users.put("wangwu",new Member("wangwu","$2a$10$i52AXBxdyVmWymFtKyt8WOdYMKficvQj6xMa8IGi3GjwjfEpe7qKu", Arrays.asList(role3)));
+        users.put("jinshan",new Member("jinshan","$2a$10$i52AXBxdyVmWymFtKyt8WOdYMKficvQj6xMa8IGi3GjwjfEpe7qKu", Arrays.asList(role3)));
     }
 
     public void insert(Member member){

@@ -52,6 +52,11 @@ public class SecurityController {
         return new ResponseBean(1001,"访问的服务需要身份认证，请引导用户到登录页");
     }
 
+    /**
+     * 获取三方用户信息
+     * @param request
+     * @return
+     */
     @GetMapping("/social/user")
     public SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
         SocialUserInfo userInfo = new SocialUserInfo();

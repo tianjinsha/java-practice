@@ -8,10 +8,14 @@ import org.springframework.social.oauth2.TokenStrategy;
 
 @Slf4j
 public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
-    //get oponid
+    /**
+     * 获取openid的url
+     */
     private static final String URL_GET_OPENID = "https://graph.qq.com/oauth2.0/me?access_token=%s";
 
-    //get userinfo
+    /**
+     * 获取用户信息的url
+     */
     private static final String URL_GET_USERINFO = "https://graph.qq.com/user/get_user_info?oauth_consumer_key=%s&openid=%s";
 
     private String appId;
@@ -30,7 +34,6 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
 
         log.info("result1:"+result);
         log.info("openId1："+openId);
-
         this.openId = StringUtils.substringBetween(result, "\"openid\":\"", "\"}");
 
         log.info("openId2："+openId);

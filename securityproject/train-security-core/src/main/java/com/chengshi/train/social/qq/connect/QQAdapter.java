@@ -17,10 +17,14 @@ public class QQAdapter implements ApiAdapter<QQ> {
     public void setConnectionValues(QQ api, ConnectionValues values) {
         QQUserInfo userInfo = api.getUserInfo();
 
-        values.setDisplayName(userInfo.getNickname());
-        values.setImageUrl(userInfo.getFigureurl_qq_1());
-        values.setProfileUrl(null);
+        // 设置服务商的id  openid
         values.setProviderUserId(userInfo.getOpenId());
+        // 设置显示用户名
+        values.setDisplayName(userInfo.getNickname());
+        // 设置头像url
+        values.setImageUrl(userInfo.getFigureurl_qq_1());
+        // qq没有个人主页，所以设置为空
+        values.setProfileUrl(null);
     }
 
     @Override

@@ -65,7 +65,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
                         "/logout", "/js/**", "/images/**", "/css/**", "/js/**", "/lib/**",
                         "/static/**","/auth/**","/qqLogin/**",
-                        "/user/regist","/me",
+                        "/user/regist","/user/me", "/social/info",
                         "/login/**", "/login-error.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
