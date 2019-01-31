@@ -43,9 +43,10 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
                 connectionFactoryLocator, Encryptors.noOpText());
         repository.setTablePrefix("train_");
         log.info("jdbc:::::::::::::::::::::");
-//        if(connectionSignUp != null) {
-//            repository.setConnectionSignUp(connectionSignUp);
-//        }
+        if(connectionSignUp != null) {
+            log.info("connention2");
+            repository.setConnectionSignUp(connectionSignUp);
+        }
         return repository;
     }
 

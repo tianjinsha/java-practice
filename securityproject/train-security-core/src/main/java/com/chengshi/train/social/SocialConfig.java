@@ -31,18 +31,11 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private TrainSecurityProperties properties;
 
-    @Autowired(required = false)
-    private ConnectionSignUp connectionSignUp;
-
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
         repository.setTablePrefix("train_");
-        log.info("jdbc2:::::::::::::::::::::");
-        if(connectionSignUp != null) {
-            repository.setConnectionSignUp(connectionSignUp);
-        }
         return repository;
     }
 
