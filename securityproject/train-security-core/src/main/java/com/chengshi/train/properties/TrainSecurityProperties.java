@@ -13,6 +13,8 @@ public class TrainSecurityProperties {
     private ValidateCodeProperties code=new ValidateCodeProperties();
 
     private TrainSocialProperties social=new TrainSocialProperties();
+
+    private SessionProperties session=new SessionProperties();
     private String loginType="JSON";
 
     private String signUpUrl = "/signUp.html";

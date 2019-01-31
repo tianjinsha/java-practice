@@ -1,6 +1,7 @@
 package com.chengshi.train.social;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Slf4j
 @Component("connect/status")
 public class TrainConnectionStatusView extends AbstractView {
     @Autowired
@@ -26,7 +27,7 @@ public class TrainConnectionStatusView extends AbstractView {
         for (String key : connections.keySet()) {
             result.put(key, CollectionUtils.isNotEmpty(connections.get(key)));
         }
-
+        logger.info("this is connectionStatus");
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(objectMapper.writeValueAsString(result));
     }

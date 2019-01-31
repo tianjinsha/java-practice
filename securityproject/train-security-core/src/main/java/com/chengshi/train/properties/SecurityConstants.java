@@ -37,4 +37,9 @@ public class SecurityConstants {
     public static final String DEFAULT_LOGIN_PROCESSING_URL_MOBILE = "/authentication/mobile";
 
     public static final String DEFAULT_LOGIN_PAGE_URL = "/signIn.html";
+
+    /**
+     * session失效默认的跳转地址
+     */
+    public static final String DEFAULT_SESSION_INVALID_URL = "/session-invalid";
 }

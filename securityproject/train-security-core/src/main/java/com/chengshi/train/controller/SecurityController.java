@@ -67,4 +67,12 @@ public class SecurityController {
         userInfo.setHeadimg(connection.getImageUrl());
         return userInfo;
     }
+
+
+    @GetMapping("/session/invalid")
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
+    public ResponseBean<String> sessionInvalid(){
+        return new ResponseBean<String>(1031,"sessio已经失效！");
+    }
+
 }

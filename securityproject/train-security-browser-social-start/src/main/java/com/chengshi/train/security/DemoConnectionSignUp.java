@@ -6,7 +6,7 @@ import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+//@Component
 public class DemoConnectionSignUp implements ConnectionSignUp {
     @Override
     public String execute(Connection<?> connection) {
