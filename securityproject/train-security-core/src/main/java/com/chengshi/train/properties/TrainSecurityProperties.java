@@ -19,6 +19,8 @@ public class TrainSecurityProperties {
 
     private String signUpUrl = "/signUp.html";
 
+    private String signOutUrl;
+
     private String loginPage=SecurityConstants.DEFAULT_UNAUTHENTICATION_URL;
 
     private String loginProcessUrl=SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM;

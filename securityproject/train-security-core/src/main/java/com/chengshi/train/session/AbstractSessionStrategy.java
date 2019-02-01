@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chengshi.train.util.ResponseBean;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,6 @@ import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.imooc.security.browser.support.SimpleResponse;
 
 /**
  * @description:
@@ -74,7 +74,7 @@ public class AbstractSessionStrategy {
             }
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(message)));
+            response.getWriter().write(objectMapper.writeValueAsString(new ResponseBean<String>(10031,message)));
         }
 
     }

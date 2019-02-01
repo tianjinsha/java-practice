@@ -66,10 +66,11 @@ public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter 
 //                .authenticationEntryPoint(trainAuthenticationEntryPoint)
 
                 //退出
-//                .and()
-//                .logout()
-//                .logoutSuccessHandler(trainLogoutSuccessHandler)
-//                .deleteCookies("JSESSIONID")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler(trainLogoutSuccessHandler)
+                .deleteCookies("JSESSIONID")
         ;
     }
 
