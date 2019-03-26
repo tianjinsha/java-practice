@@ -23,10 +23,10 @@
             <groupId>com.train.db</groupId>
             <version>${db-project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+			</dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
