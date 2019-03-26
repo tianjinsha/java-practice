@@ -15,6 +15,7 @@ import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -30,6 +31,7 @@ public class TrainUserDetailsService implements UserDetailsService , SocialUserD
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
+            List<SimpleGrantedAuthority> collect = user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
             return new SecurityUser(user.getUsername(), user.getPassword(), user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
         }
     }
