@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class BrowserProperties {
 
-    private String signUpUrl="train-login-2.html";
+    private String signUpUrl = "train-login-2.html";
 
-    private String loginProcessingUrl="/authentication/form";
+    private String loginProcessingUrl = "/authentication/form";
 }

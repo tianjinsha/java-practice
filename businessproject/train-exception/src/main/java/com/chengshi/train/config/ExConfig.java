@@ -1,4 +1,5 @@
 package com.chengshi.train.config;
+
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,7 @@ public class ExConfig {
 
     /**
      * 自定义错误页面
+     *
      * @return
      */
     @Bean

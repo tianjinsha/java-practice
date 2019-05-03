@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController_4 {
 
     @GetMapping("/ping")
-    public String ping (HttpServletRequest request){
+    public String ping(HttpServletRequest request) {
         log.info(request.getRequestURI());
         return "ping success";
     }
 
     @GetMapping("/member")
-    public Member member(){
-        return new Member("lisi","123456",40);
+    public Member member() {
+        return new Member("lisi", "123456", 40);
     }
 }

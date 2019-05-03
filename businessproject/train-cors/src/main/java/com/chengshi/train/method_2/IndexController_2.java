@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController_2 {
 
     @GetMapping("/ping")
-    public String ping(){
+    public String ping() {
         return "pring success";
     }
 
     @GetMapping("/member")
-        public Member member(){
-            return new Member("zhangsan","123456",15);
+    public Member member() {
+        return new Member("zhangsan", "123456", 15);
     }
 }

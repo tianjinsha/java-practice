@@ -20,10 +20,10 @@ public class RedirectExceptionHandler {
     public static final String DEFAULT_ERROR_VIEW = "/error/exception";
 
     @ExceptionHandler(value = LoginException.class)
-    public String defaultErrorHandler(Model model, HttpServletRequest req, Exception e){
-        model.addAttribute("url",req.getRequestURI());
-        model.addAttribute("exception",e);
-        log.info("loginException:"+e.getMessage());
+    public String defaultErrorHandler(Model model, HttpServletRequest req, Exception e) {
+        model.addAttribute("url", req.getRequestURI());
+        model.addAttribute("exception", e);
+        log.info("loginException:" + e.getMessage());
         return DEFAULT_ERROR_VIEW;
     }
 }
