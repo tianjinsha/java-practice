@@ -1,0 +1,49 @@
+
+a {
+    text-decoration: none;
+    color: #1064A0;
+}
+
+a:hover {
+    color: #0078D2;
+}
+.page h1 {
+    font-size: 44px;
+    color: #0188DE;
+    padding: 20px 0px 10px 0px;
+}
+
+.page h2 {
+    color: #0188DE;
+    font-size: 16px;
+    padding: 10px 0px 40px 0px;
+}
+
+.page {
+    width: 600px;
+    padding: 20px 20px 40px 20px;
+    margin: 0 auto 80px ;
+    line-height: 30px;
+}
+
+.button {
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+.button a {
+    background: #009CFF;
+    border-bottom: 4px solid #0188DE;
+    display: inline-block;
+    margin: 0 15px;
+    width: 120px;
+    height: 28px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.button a:hover {
+    background: #5BBFFF;
+}
