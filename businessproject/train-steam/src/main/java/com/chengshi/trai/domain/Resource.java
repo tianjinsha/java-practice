@@ -13,10 +13,10 @@ public class Resource {
     public Resource() {
     }
 
-    public Resource(Integer id, Integer pid,Integer sort, String name) {
+    public Resource(Integer id, Integer pid, Integer sort, String name) {
         this.id = id;
         this.pid = pid;
-        this.sort=sort;
+        this.sort = sort;
         this.name = name;
     }
 }

@@ -17,10 +17,10 @@ import java.util.List;
 public class FastJsonTest {
 
     @Test
-    public void test(){
-        User user=new User(1,"zhangsan");
-        User user1=new User(2,"lisi");
-        List<User> list=new ArrayList<>();
+    public void test() {
+        User user = new User(1, "zhangsan");
+        User user1 = new User(2, "lisi");
+        List<User> list = new ArrayList<>();
         list.add(user);
         list.add(user1);
         String s = JSON.toJSONString(list);
@@ -30,7 +30,7 @@ public class FastJsonTest {
 
     @Test
     public void test2() throws FileNotFoundException {
-        File file=new File("track1.json");
-        InputStream in=new FileInputStream(file);
+        File file = new File("track1.json");
+        InputStream in = new FileInputStream(file);
     }
 }

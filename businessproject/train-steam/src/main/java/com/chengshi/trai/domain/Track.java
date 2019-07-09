@@ -14,8 +14,8 @@ public class Track implements Serializable {
      */
     private String name;
     /**
-    *时长
-    */
+     * 时长
+     */
     private int length;
 
     public Track() {

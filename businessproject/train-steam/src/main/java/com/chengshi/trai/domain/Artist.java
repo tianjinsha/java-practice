@@ -15,7 +15,7 @@ public class Artist implements Serializable {
      */
     private String name;
     /**
-     *乐队成员
+     * 乐队成员
      */
     private List<String> members;
     /**
