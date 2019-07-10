@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: qxs-demo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/springdb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+
+
+server:
+  port: 8082

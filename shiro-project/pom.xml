@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.chengshi.shiro</groupId>
+    <artifactId>shiro-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>shiro-common</module>
+        <module>shiro-web</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
+        <spring-cloud.Edgware.version>Edgware.SR5</spring-cloud.Edgware.version>
+        <spring-cloud.Dalston.version>Dalston.SR5</spring-cloud.Dalston.version>
+        <platform-bom.version>Brussels-SR14</platform-bom.version>
+        <shiro.versoin>1.0-SNAPSHO</shiro.versoin>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${platform-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.Edgware.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>shiro-project</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source><!-- 源代码使用的开发版本 -->
+                    <target>${maven.compiler.target}</target><!-- 需要生成的目标class文件的编译版本 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

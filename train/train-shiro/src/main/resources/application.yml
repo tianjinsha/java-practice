@@ -1,0 +1,47 @@
+server:
+  port: 1021
+spring:
+  application:
+    name: train-shiro
+  profiles:
+    active: prod
+  session:
+    store-type: redis
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  redis:
+    host: localhost
+    port: 6379
+    password: 1234
+security:
+  user:
+    name: user
+    password: 1234
+
+
+
+---
+spring:
+  profiles: dev
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    schema:
+    - classpath:db/schema.sql
+    data:
+    - classpath:db/data.sql
+
+
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://localhost:3306/springdb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 1234
