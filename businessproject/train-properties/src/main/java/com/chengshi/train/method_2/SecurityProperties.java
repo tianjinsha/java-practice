@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "train.security")
 public class SecurityProperties {
 
-    private BrowserProperties browser=new BrowserProperties();
+    private BrowserProperties browser = new BrowserProperties();
 
     private int time;
 

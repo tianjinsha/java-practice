@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<form action="/form-Kaptcha">
+    <input type="text" name="vrifyCode" />  <img alt="验证码" onclick = "this.src='/defaultKaptcha?d='+new Date()*1" src="/defaultKaptcha" />
+    </br>  <input type="submit" value="提交"></input>
+</form>
+</body>
+</html>

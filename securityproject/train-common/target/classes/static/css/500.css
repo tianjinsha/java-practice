@@ -1,0 +1,106 @@
+html{
+    font-size: 14px;
+}
+
+.wrap{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error_content {
+    max-width: 1000px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error_left {
+
+    width: 330px;
+    height: 345px;
+    background: url(/images/timg.png) no-repeat;
+    background-size: 100%;
+
+}
+
+.error_right {
+    /*width: 450px;*/
+    /*height: 400px;*/
+}
+
+.error_detail {
+    margin: 160px 0 0 100px;
+    width: 400px;
+    height: auto;
+}
+
+.error_detail .error_p_title {
+    font-size: 1.75rem;
+    color: #eb8531;
+}
+
+.error_detail .error_p_con {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 20px;
+}
+
+.sp_con {
+    margin-left: 128px;
+    color: #1A4EC0;
+    margin-top: 39px;
+    position: absolute;
+    font-size: 1.2rem;
+}
+
+.btn_error {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn_error a {
+    padding: 5px;
+    border: 1px solid #CCCCCC;
+}
+
+.btn {
+    cursor: pointer;
+    margin-top: 1px;
+    font-size: 20px;
+    background: no-repeat;
+}
+
+.btn_back1 {
+    background: dodgerblue;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+.btn_back2 {
+    border-radius: 4px;
+    margin-left: 25px;
+    color: #FF813B;
+    background: #f3f3f3;
+}
+@media screen and (max-width:768px ) {
+    .error_content {
+        max-width: 600px;
+        min-height: 500px;
+    }
+    .error_left {
+        height: 300px;
+    }
+    .error_detail {
+        padding:15px;
+        margin: 20px 0 0 0px;
+        width: 300px;
+        height: auto;
+    }
+}

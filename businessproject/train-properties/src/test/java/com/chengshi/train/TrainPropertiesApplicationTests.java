@@ -20,23 +20,24 @@ public class TrainPropertiesApplicationTests {
     com.chengshi.train.method_2.SecurityProperties securityProperties2;
     @Autowired
     com.chengshi.train.method_3.SecurityProperties securityProperties3;
+
     @Test
     public void TestMethod_1() {
-        log.info("url:"+securityProperties.getBrowser().getSignUpUrl());
-        log.info("time:"+securityProperties.getTime());
+        log.info("url:" + securityProperties.getBrowser().getSignUpUrl());
+        log.info("time:" + securityProperties.getTime());
     }
 
     @Test
     public void TestMethod_2() {
-        log.info("url:"+securityProperties2.getBrowser().getSignUpUrl());
-        log.info("time:"+securityProperties2.getTime());
+        log.info("url:" + securityProperties2.getBrowser().getSignUpUrl());
+        log.info("time:" + securityProperties2.getTime());
     }
 
     @Test
     public void TestMethod_3() {
-        log.info("url:"+securityProperties3.getSignUpUrl());
-        log.info("processing:"+securityProperties3.getLoginProcessingUrl());
-        log.info("time:"+securityProperties3.getTime());
+        log.info("url:" + securityProperties3.getSignUpUrl());
+        log.info("processing:" + securityProperties3.getLoginProcessingUrl());
+        log.info("time:" + securityProperties3.getTime());
     }
 
 }

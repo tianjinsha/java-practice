@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TrainController {
 
     @GetMapping("/train")
-    public String train(){
+    public String train() {
         throw new TrainException("操作异常！");
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         throw new LoginException("登录异常！");
     }
 }

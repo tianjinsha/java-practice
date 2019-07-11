@@ -14,7 +14,7 @@ import java.io.IOException;
 @Slf4j
 @Configuration
 @WebFilter("/**")
-public class CorsInterceptor  extends OncePerRequestFilter {
+public class CorsInterceptor extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
