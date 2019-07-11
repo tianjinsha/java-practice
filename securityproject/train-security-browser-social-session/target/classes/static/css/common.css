@@ -1,0 +1,126 @@
+.qxs-display-none{
+    display: none;
+}
+
+
+/**
+修改验证码的位置
+ */
+.qxs-input{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.qxs-input-pt{
+    position: absolute;
+    right: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.qxs-codeImg{
+    height: 42px;
+    width:auto;
+}
+.qxs-cms{
+    display: flex;
+    background: #fafafa;
+    border: 1px solid #e9e9e9;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 80px;
+}
+/**
+第三方登录
+ */
+.qxs-icon{
+
+}
+.qq-icon{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-image: url(/images/icon/qq.png);
+}
+.password-icon-a{
+    margin-right: 15px;
+}
+.mobile-icon-a{
+    margin-right: 15px;
+}
+.qq-icon-a{
+    margin-right: 15px;
+}
+
+.weix-icon-a{
+    margin-left: 15px;
+}
+
+.password-icon{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-image: url(../images/icon/password.png);
+}
+
+.weix-icon{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-image: url(../images/icon/weix.png);
+}
+.mobile-icon{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-image: url(../images/icon/mobile.png);
+}
+.more-sign{
+    position: relative;
+    text-align: center;
+}
+
+.more-sign h6::before{
+    content: "";
+    border-top: 1px solid #b5b5b5;
+    display: block;
+    position: absolute;
+    width: 80px;
+    top: 5px;
+
+}
+
+.more-sign h6::after{
+    content: "";
+    border-top: 1px solid #b5b5b5;
+    display: block;
+    position: absolute;
+    width: 80px;
+    top: 5px;
+    right: 0;
+}
+/*
+登录方式
+*/
+.form-sms{
+    display: none;
+}
+/**
+用户信息
+ */
+.qxs-md-form .qxs-input-label{
+    width: 120px !important;
+}
