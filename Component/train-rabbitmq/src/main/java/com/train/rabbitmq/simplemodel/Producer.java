@@ -2,6 +2,7 @@ package com.train.rabbitmq.simplemodel;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import com.train.rabbitmq.util.ConnectionUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class Producer {
     public static void main(String[] args) throws IOException, TimeoutException {
-        final String QUEUE_NAME="queue_test";
+        final String QUEUE_NAME="simple_queue";
 
         //获取连接
         Connection connection = ConnectionUtil.getConnection();
@@ -20,7 +21,7 @@ public class Producer {
         Channel channel = connection.createChannel();
         //消息内容
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-        String message="Hello Word";
+        String message="Hello Word3";
 
         channel.basicPublish("",QUEUE_NAME,null,message.getBytes());
 

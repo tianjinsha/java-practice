@@ -1,4 +1,4 @@
-package com.train.rabbitmq.hellomodel;
+package com.train.rabbitmq.workmodel;
 
 import com.rabbitmq.client.*;
 import com.train.rabbitmq.util.ConnectionUtil;
@@ -9,34 +9,35 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author tjshan
- * @since 2019/7/12 13:33
+ * @date 2019/7/14 21:30
  */
-public class RabbitConsumer {
-    private static final String QUEUE_NAME = "simple_queue";
+public class RabbitComsumer2 {
+    private static final String QUEUE_NAME="work_queue";
 
-    public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
+    public static void main(String[] args) throws IOException, TimeoutException {
         Connection connection = ConnectionUtil.getConnection();
         Channel channel = connection.createChannel();
-        channel.basicQos(64);
-        Consumer consumer = new DefaultConsumer(channel) {
+        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+
+        DefaultConsumer consumer = new DefaultConsumer(channel){
             @Override
             public void handleDelivery(String consumerTag,
                                        Envelope envelope,
                                        AMQP.BasicProperties properties,
                                        byte[] body) throws IOException {
-                System.out.println("receive message : " + new String(body));
 
+                System.out.println("receive message : " + new String(body));
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.SECONDS.sleep(3);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }finally {
+                    System.out.println("[2] done");
                 }
-                channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
-        channel.basicConsume(QUEUE_NAME, consumer);
-        TimeUnit.SECONDS.sleep(500);
-        channel.close();
-        connection.close();
+        //自动应答 -true
+        channel.basicConsume(QUEUE_NAME,true,consumer);
     }
+
 }
