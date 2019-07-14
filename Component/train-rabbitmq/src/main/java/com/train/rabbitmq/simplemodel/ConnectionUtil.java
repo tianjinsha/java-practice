@@ -15,10 +15,10 @@ public class ConnectionUtil {
 
     public  static Connection getConnection() throws IOException, TimeoutException {
         ConnectionFactory factory=new ConnectionFactory();
-        factory .setHost("10.1.42.23");
+        factory .setHost("localhost");
         factory.setPort(5672);
 
-        factory.setVirtualHost("/tzb");
+        factory.setVirtualHost("/");
         factory.setUsername("admin");
         factory.setPassword("admin");
 
