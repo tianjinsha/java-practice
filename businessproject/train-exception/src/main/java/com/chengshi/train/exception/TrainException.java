@@ -5,10 +5,11 @@ package com.chengshi.train.exception;
  * @author: tian
  * @date: 2019-01-21 22:15
  */
-public class TrainException extends RuntimeException{
-    public TrainException(){}
+public class TrainException extends RuntimeException {
+    public TrainException() {
+    }
 
-    public TrainException(String msg){
+    public TrainException(String msg) {
         super(msg);
     }
 }

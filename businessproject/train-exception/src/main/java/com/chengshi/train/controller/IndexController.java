@@ -14,18 +14,18 @@ public class IndexController {
 
     @ResponseBody
     @GetMapping("/ping")
-    public String ping(){
+    public String ping() {
         return "ping success !";
     }
 
     @GetMapping("/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 
 
     @GetMapping("/say")
-    public String say(){
+    public String say() {
         return "say";
     }
 }

@@ -1,0 +1,24 @@
+
+
+logging:
+  level: info
+
+jwt:
+  secret: mySecret
+  header: Authorization
+  expiration: 604800
+  tokenHead: Bearer;
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#  session:
+#    store-type: redis
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  resources:
+    chain:
+      cache: false
+server:
+  port: 1020

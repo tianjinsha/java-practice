@@ -12,15 +12,15 @@ import java.io.Serializable;
 @Data
 public class R<T> implements Serializable {
 
-    public static final int NO_LOGIN=1003;
+    public static final int NO_LOGIN = 1003;
 
-    public static final int SUCCESS=1001;
+    public static final int SUCCESS = 1001;
 
-    public static final int FAIL=1002;
+    public static final int FAIL = 1002;
 
-    public static final int NO_PERMISSION=1004;
-    private int code =SUCCESS;
-    String msg="success";
+    public static final int NO_PERMISSION = 1004;
+    private int code = SUCCESS;
+    String msg = "success";
 
     private T data;
 

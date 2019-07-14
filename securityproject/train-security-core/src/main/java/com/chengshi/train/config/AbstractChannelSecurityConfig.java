@@ -53,7 +53,7 @@ public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter 
         http.formLogin()
                 //登陆页
                 .loginPage(trainSecurityProperties.getLoginPage())
-//                //登陆处理的接口
+                //登陆处理的接口
                 .loginProcessingUrl(trainSecurityProperties.getLoginProcessUrl())
 
                 //登陆成功或则失败的处理器

@@ -8,21 +8,22 @@
 <body>
 
 <div class="wrap">
-    <div class="content">显示内容:</div><br/>
+    <div class="content">显示内容:</div>
+    <br/>
     <label>url:</label><input type="text" name="url" value="http://127.0.0.1:1020/method1/member"
                               style="width: 350px;height: 36px"><br/>
     <button class="cros1">cors跨域测试-1</button>
 </div>
 </body>
 <script>
-    $(function(){
+    $(function () {
 
         $(".cros1").click(function () {
-            var url=$("input[name=url]").val();
+            var url = $("input[name=url]").val();
             $.ajax({
-                url:url,
-                method:"GET",
-                success:function (data,status,xhr) {
+                url: url,
+                method: "GET",
+                success: function (data, status, xhr) {
                     console.log(xhr);
                     console.log(status);
                     console.log(data);

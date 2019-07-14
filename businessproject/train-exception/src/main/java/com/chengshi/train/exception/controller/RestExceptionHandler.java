@@ -22,7 +22,7 @@ public class RestExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public R<String> jsonErrorHandler(HttpServletRequest req, LoginException e) {
-        R<String> r=new R<>();
+        R<String> r = new R<>();
         r.setCode(R.FAIL);
         r.setMsg(e.getMessage());
         return r;

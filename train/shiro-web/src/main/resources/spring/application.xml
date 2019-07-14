@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+ 						http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.chengshi.shiro">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <import resource="spring-dao.xml"/>
+    <import resource="spring-redis.xml"/>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="login.html"></property>
+        <property name="unauthorizedUrl" value="403.html"></property>
+        <property name="filterChainDefinitions">
+            <value>
+                /login.html=anon
+                /subLogin=anon
+
+                <!--/roleAdmin=roles["admin","user"]-->
+                <!--/roleUser=roles["user"]-->
+                <!--/roleTest=roles["admin"]-->
+                <!--/perms1=perms["user_delete"]-->
+                <!--/perms2=perms["user_delete","user_update"]-->
+                <!--/perms3=perms["test"]-->
+
+                /roleAdmin=roleOr["admin","user"]
+                /roleUser=roleOr["user"]
+
+
+                /*=authc
+            </value>
+        </property>
+        <property name="filters">
+            <util:map>
+                <entry key="roleOr" value-ref="roleOrFilter"></entry>
+            </util:map>
+        </property>
+    </bean>
+
+    <bean class="com.chengshi.shiro.fileter.RoleOrFilter" id="roleOrFilter"/>
+
+    <!--创建securityManager对象-->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+        <property name="realm" ref="realm"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="rememberMeManager" ref="cookieRememberMeManager"/>
+    </bean>
+
+    <bean class="com.chengshi.shiro.CustomRealm" id="realm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"></property>
+    </bean>
+
+    <!--shiro加密-->
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"></property>
+        <property name="hashIterations" value="1"></property>
+    </bean>
+
+    <bean class="com.chengshi.shiro.session.CustomSessionManager" id="sessionManager">
+        <property name="sessionDAO" ref="sessionDao"/>
+    </bean>
+    <bean class="com.chengshi.shiro.session.RedisSessionDao" id="sessionDao"/>
+
+    <!--缓存管理-->
+    <bean class="com.chengshi.shiro.cache.RedisCacheManager" id="cacheManager"></bean>
+
+    <!--记住我-->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+        <property name="cookie" ref="cookie"/>
+    </bean>
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="cookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="maxAge" value="7200"/>
+    </bean>
+
+</beans>

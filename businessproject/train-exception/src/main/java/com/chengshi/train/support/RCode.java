@@ -22,6 +22,7 @@ public enum RCode {
     public int getCode() {
         return code;
     }
+
     public String getMsg() {
         return msg;
     }

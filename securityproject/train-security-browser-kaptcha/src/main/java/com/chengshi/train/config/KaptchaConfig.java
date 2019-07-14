@@ -10,7 +10,7 @@ import java.util.Properties;
 @Configuration
 public class KaptchaConfig {
 
-        @Bean
+    @Bean
     public DefaultKaptcha getDefaultKaptcha() {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         Properties properties = new Properties();

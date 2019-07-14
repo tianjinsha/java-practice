@@ -45,9 +45,9 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
-        repository.setTablePrefix("train_");
+        repository.setTablePrefix("qxs_");
         if(connectionSignUp != null) {
-            log.info("connention2");
+            log.info("connection2");
             repository.setConnectionSignUp(connectionSignUp);
         }
         return repository;

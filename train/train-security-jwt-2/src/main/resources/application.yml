@@ -1,0 +1,5 @@
+jwt:
+  secret: mySecret
+  header: Authorization
+  expiration: 604800
+  tokenHead: Bearer;

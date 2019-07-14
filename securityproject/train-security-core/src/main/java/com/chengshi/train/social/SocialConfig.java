@@ -35,7 +35,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
-        repository.setTablePrefix("train_");
+        repository.setTablePrefix("qxs_");
         return repository;
     }
 

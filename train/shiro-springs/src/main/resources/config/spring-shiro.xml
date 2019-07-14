@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="login.html"></property>
+        <property name="unauthorizedUrl" value="403.html"></property>
+        <!--<property name="filterChainDefinitions" ref="shiroFilterChainDefinitions"/>-->
+        <property name="filterChainDefinitions">
+            <value>
+                /static/**=anon
+                /login.html=anon
+                /loginIn=anon
+
+                <!--/roleAdmin=roles["admin","user"]-->
+                <!--/roleUser=roles["user"]-->
+                <!--/roleTest=roles["admin"]-->
+                <!--/perms1=perms["user_delete"]-->
+                <!--/perms2=perms["user_delete","user_update"]-->
+                <!--/perms3=perms["test"]-->
+
+
+                /*=authc
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro权限过滤过滤器定义 -->
+    <bean class="java.lang.String" name="shiroFilterChainDefinitions">
+        <constructor-arg>
+            <value>
+                /static/**=anon
+                /login.html=anon
+                /loginIn=anon
+
+                /*=authc
+            </value>
+        </constructor-arg>
+    </bean>
+
+    <!--创建securityManager对象-->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+        <property name="realm" ref="realm"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="rememberMeManager" ref="cookieRememberMeManager"/>
+    </bean>
+
+    <!--realm 配置-->
+    <bean class="com.chengshi.shiro.realm.CustomRealm" id="realm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <!--shiro加密-->
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+
+    <!--session管理-->
+    <bean class="com.chengshi.shiro.session.CustomSessionManager" id="sessionManager">
+        <property name="sessionDAO" ref="sessionDao"/>
+    </bean>
+    <bean class="com.chengshi.shiro.session.RedisSessionDao" id="sessionDao"/>
+
+    <!--缓存管理-->
+    <bean class="com.chengshi.shiro.cache.RedisCacheManager" id="cacheManager"></bean>
+
+    <!--记住我功能-->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+        <property name="cookie" ref="cookie"/>
+    </bean>
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="cookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="maxAge" value="7200"/>
+    </bean>
+
+    <!-- Shiro生命周期处理器 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>
