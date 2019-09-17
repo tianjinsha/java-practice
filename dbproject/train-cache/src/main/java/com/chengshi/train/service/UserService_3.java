@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author: tian
  * @date: 2019-01-26 16:45
  */
-@CacheConfig(cacheNames = "user3:")
+@CacheConfig(cacheNames = "user3")
 @Service
 public class UserService_3 {
 

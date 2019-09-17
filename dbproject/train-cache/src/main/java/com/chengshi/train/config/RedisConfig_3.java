@@ -32,17 +32,20 @@ public class RedisConfig_3 extends CachingConfigurerSupport {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         //设置缓存过期时间
         cacheManager.setDefaultExpiration(defaultExpireation);
+        cacheManager.setUsePrefix(true);
         return cacheManager;
     }
 
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory){
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        setSerializer(template);//设置序列化工具
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory){
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        //设置序列化工具
+        setSerializer(template);
         template.afterPropertiesSet();
         return template;
     }
-    private void setSerializer(StringRedisTemplate template){
+    private void setSerializer(RedisTemplate<String,Object> template){
         @SuppressWarnings({ "rawtypes", "unchecked" })
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         RedisSerializer stringSerizlizer=new StringRedisSerializer();

@@ -1,9 +1,12 @@
 package com.chengshi.train;
 
+import com.chengshi.train.config.RedisUtil;
+import com.chengshi.train.service.UserService;
 import com.chengshi.train.service.UserService_2;
 import com.chengshi.train.model.User;
 import com.chengshi.train.service.UserService_3;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,6 +18,12 @@ import org.springframework.web.bind.annotation.*;
 public class IndexController {
     @Autowired
     UserService_2 userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @GetMapping("/ping")
     public String ping(){
@@ -50,5 +59,15 @@ public class IndexController {
     @DeleteMapping("/delete/{username}")
     public void delete(@PathVariable  String username){
         userService.deleteUserByUserName(username);
+    }
+
+    @GetMapping("/length")
+    public Object getLength(@RequestParam  String prefix){
+        String key=prefix+"*";
+
+        Object o = redisUtil.keys(key);
+        int i = redisUtil.keysLength(key);
+
+        return o;
     }
 }

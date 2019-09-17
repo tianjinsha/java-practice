@@ -10,6 +10,7 @@
     <modules>
         <module>train-common</module>
         <module>train-rabbitmq</module>
+        <module>train-elasticsearch</module>
     </modules>
     <packaging>pom</packaging>
 
