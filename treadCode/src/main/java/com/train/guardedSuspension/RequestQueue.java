@@ -1,0 +1,27 @@
+package com.train.guardedSuspension;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * @author tjshan
+ * @date 2019/11/15 14:14
+ */
+public class RequestQueue {
+    private final Queue<Request> queue=new LinkedList<>();
+    public synchronized Request getRequest(){
+        while(queue.peek()==null){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return queue.remove();
+    }
+
+    public synchronized void putRequest(Request request){
+        queue.offer(request);
+        notifyAll();
+    }
+}
