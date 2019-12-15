@@ -1,0 +1,27 @@
+server:
+  port: 1022
+spring:
+  application:
+    name: client-two
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+    hostname: eureka-dev
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/${endpoints.info.path}
+    health-check-url-path: http://${eureka.instance.hostname}:${server.port}/${endpoints.health.path}
+  client:
+    registry-fetch-interval-seconds: 30
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka,http://${eureka.instance.hostname}:8762/eureka
+    healthcheck:
+      enabled: true
+
+endpoints:
+  info:
+    path: appInfo
+  health:
+    path: checkHealth

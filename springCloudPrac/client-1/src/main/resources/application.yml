@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: client-one
+  profiles:
+    active: prod
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+    hostname: eureka-dev
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka,http://${eureka.instance.hostname}:8762/eureka
+
+---
+spring:
+     profiles: dev
+server:
+  port: 1021
+
+
+---
+spring:
+  profiles: prod
+server:
+  port: 1031
