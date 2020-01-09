@@ -2,7 +2,7 @@ server:
   port: 1022
 spring:
   application:
-    name: client-two
+    name: client-one
 
 eureka:
   instance:
@@ -16,7 +16,7 @@ eureka:
     registry-fetch-interval-seconds: 30
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka,http://${eureka.instance.hostname}:8762/eureka
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka
     healthcheck:
       enabled: true
 

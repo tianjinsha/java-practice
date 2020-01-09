@@ -1,1 +1,16 @@
+server:
+  port: 2081
 
+spring:
+  application:
+    name: client-web
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+    hostname: eureka-dev
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka
