@@ -1,12 +1,14 @@
 package com.train.prac.vo;
 
+import java.io.Serializable;
+
 /**
  * @author: tjshan
  * @date: 2020-06-25 16:18
  * FileName: Person
  * Description:
  */
-public class Person {
+public class Person implements Serializable {
     private Integer age;
     private String name;
     private String sex;
