@@ -35,4 +35,12 @@ public class IOTest2 {
         }
         System.out.println(new String(data,0,len));
     }
+
+    @Test
+    public void FileDescriptorTest(){
+        String outText= "FileDescriptor Test";
+        PrintStream stream = new PrintStream(new FileOutputStream(FileDescriptor.out));
+        stream.println(outText);
+        stream.close();
+    }
 }
