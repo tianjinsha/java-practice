@@ -1,0 +1,11 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "js 基础练习",
+  "main": "index.js",
+  "scripts": {
+    "test": "js test"
+  },
+  "author": "tjshan",
+  "license": "ISC"
+}
