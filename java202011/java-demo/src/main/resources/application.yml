@@ -1,3 +1,11 @@
 
 server:
   port: 8081
+
+spring:
+  session:
+    store-type: none
+
+security:
+  basic:
+    enabled: true
