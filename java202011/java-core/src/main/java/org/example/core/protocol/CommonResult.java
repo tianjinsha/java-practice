@@ -1,5 +1,7 @@
 package org.example.core.protocol;
 
+import org.example.core.constant.ResultEnum;
+
 /**
  * @author tjstj
  * @description TODO
@@ -7,10 +9,10 @@ package org.example.core.protocol;
  */
 public class CommonResult {
 
-    private int result;
+    private int result = ResultEnum.Success.getResult();
     private long timestamp;
     private String  command;
-    private String message;
+    private String message = ResultEnum.Success.getMessage();
     private CommonBean param;
 
     public int getResult() {

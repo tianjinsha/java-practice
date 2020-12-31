@@ -19,9 +19,4 @@ public @interface MethodAnnotation {
      */
     String name() default "";
 
-    /**
-     * 方法描述
-     * @return string
-     */
-    String description() default "";
 }

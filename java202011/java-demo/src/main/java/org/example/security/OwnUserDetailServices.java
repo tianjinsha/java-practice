@@ -1,5 +1,8 @@
 package org.example.security;
 
+import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
+import org.example.dto.UserDto;
+import org.example.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +28,17 @@ public class OwnUserDetailServices implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.info("登陆用户:" + username);
+//        System.out.println(passwordEncoder.encode("123456"));
+        UserDto user = userService.findUserByName(username);
+
         return new User(username,
-                passwordEncoder.encode("123456"),
+                user.getPassword(),
                 AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

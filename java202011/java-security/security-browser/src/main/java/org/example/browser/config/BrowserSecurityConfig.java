@@ -26,6 +26,7 @@ public class BrowserSecurityConfig extends AbstractWebSecurityConfig {
                 .and()
                 .csrf()
                 .disable()
-                .formLogin();
+                .formLogin()
+                .and().headers().frameOptions().sameOrigin();
     }
 }

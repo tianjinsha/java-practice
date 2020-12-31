@@ -32,7 +32,6 @@ public class ParamResultAspect {
 
     @Around("methodParamPointCut()")
     public  Object around(ProceedingJoinPoint point){
-        System.out.println("-============arcound");
         Object object = null;
         CommonResult result = null;
         Class<?> aClass = point.getTarget().getClass();
@@ -41,12 +40,11 @@ public class ParamResultAspect {
         try {
             Method method = aClass.getMethod(name);
             MethodAnnotation annotation = method.getAnnotation(MethodAnnotation.class);
-            System.out.println(annotation.name());
-            System.out.println(annotation.description());
             object = point.proceed();
             if(object instanceof CommonResult){
                 result = (CommonResult) object;
                 result.setCommand(annotation.name());
+                result.setTimestamp(System.currentTimeMillis());
                 return  result;
             }
         } catch (NoSuchMethodException e) {
