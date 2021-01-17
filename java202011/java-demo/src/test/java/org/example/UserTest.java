@@ -1,10 +1,12 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.dto.UserDto;
 import org.example.entity.Role;
 import org.example.entity.User;
 import org.example.repository.RoleRepository;
 import org.example.repository.UserRepository;
+import org.example.service.RoleService;
 import org.example.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,23 +23,57 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class UserTest {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
+    RoleService roleService;
     @Autowired
     UserService userService;
 
     @Test
     public void findUserByName() {
-        System.out.println("=======");
-        UserDto user = userService.findUserByName("user1");
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println(user.getRoles());
+        String username = "user1";
+        log.info("UserTest.findUserByName:"+username);
+        UserDto user = userService.findUserByName(username);
+        log.info(user.toString());
+
+        username = "user2";
+        log.info("UserTest.findUserByName:"+username);
+        user = userService.findUserByName(username);
+        log.info(user.toString());
+    }
+
+    @Test
+    public void findUserByPhone(){
+        String phone = "18780183730";
+        log.info("UserTest.findUserByPhone:"+phone);
+        UserDto user = userService.findUserByPhone(phone);
+        log.info(user.toString());
+    }
+
+    @Test
+    public void findUserByEmail(){
+        String email = "18780183730@163.com";
+        log.info("UserTest.findUserByEmail:"+email);
+        UserDto user = userService.findUserByEmail(email);
+        log.info(user.toString());
+    }
+
+    @Test
+    public void findAllRoles(){
+        log.info("UserTest.findAllRoles");
+        List<Role> roles = roleService.findAll();
+        roles.stream().forEach(item->{
+            log.info(item.toString());
+        });
+    }
+
+    @Test
+    public void findByCode(){
+        String code = "ROLE_SYSTEM";
+        log.info("UserTest.findAllRoles:");
+        Role role = roleService.findRoleByCode(code);
+        log.info(role.toString());
     }
 }

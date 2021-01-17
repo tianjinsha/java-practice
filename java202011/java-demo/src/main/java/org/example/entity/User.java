@@ -13,32 +13,6 @@ import java.util.List;
  * @date 2020/12/13 14:26
  */
 
-//@SqlResultSetMapping(
-//        name = "userDtoMap",
-//        classes = {
-//                @ConstructorResult(targetClass = UserDto.class,
-//                        columns = {
-//                                @ColumnResult(name = "id", type = Long.class),
-//                                @ColumnResult(name = "username", type = String.class),
-//                                @ColumnResult(name = "email", type = String.class),
-//                                @ColumnResult(name = "phone", type = String.class),
-//                                @ColumnResult(name = "password", type = String.class),
-//                                @ColumnResult(name = "isExpired", type = String.class),
-//                                @ColumnResult(name = "isLocked", type = String.class),
-//                                @ColumnResult(name = "isEnabled", type = String.class),
-//                                @ColumnResult(name = "isEnabled", type = String.class),
-//                                @ColumnResult(name = "roles", type = List.class)
-//                        }
-//                )
-//        }
-//)
-//
-//@NamedNativeQuery(
-//        name = "User.findAllDTO",
-//        query = "select * from user left join role ON user.role",
-//        resultSetMapping = "userDtoMap"
-//)
-//@Data
 @Setter
 @Getter
 @NoArgsConstructor

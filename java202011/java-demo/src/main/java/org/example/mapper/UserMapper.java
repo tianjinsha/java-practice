@@ -33,18 +33,17 @@ public interface UserMapper {
     })
     UserDto findOneUser(User user);
 
-
     /**
      * 将权限列表装换为字符串列表
      *
      * @param roleList
      * @return
-     */
+//     */
     @Named("convertRoleListToString")
     default List<String> convertRoleListToString(List<Role> roleList) {
         List<String> stringList = roleList
-                .stream().
-                        map(item -> item.getCode()).collect(Collectors.toList());
+                .stream()
+                .map(item -> item.getCode()).collect(Collectors.toList());
         return stringList;
     }
 }

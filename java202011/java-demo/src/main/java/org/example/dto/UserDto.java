@@ -24,4 +24,19 @@ public class UserDto {
     private boolean isLocked;
     private boolean isEnabled;
     List<String> roles;
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", isExpired=" + isExpired +
+                ", isLocked=" + isLocked +
+                ", isEnabled=" + isEnabled +
+                ", roles=" + roles +
+                '}';
+    }
 }

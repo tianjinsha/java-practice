@@ -14,4 +14,19 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long>, JpaSpecificationExecutor<Role> {
+
+    /**
+     * 根据授权代码查找角色
+     * @param code 角色代码
+     * @return Role
+     */
+   Role findByCode(String code);
+
+    /**
+     * 根据授权代码查找角色
+     * @param name  角色名称
+     * @return Role
+     */
+   Role findByName(String name);
+
 }

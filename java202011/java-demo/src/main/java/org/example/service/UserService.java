@@ -24,9 +24,32 @@ public class UserService {
      * @return UserDto
      */
     public UserDto findUserByName(String username){
-        User repository = userRepository.findByUsername(username);
-        UserDto oneUser = UserMapper.INSTANCE.findOneUser(repository);
+        User user = userRepository.findByUsername(username);
+        UserDto oneUser = UserMapper.INSTANCE.findOneUser(user);
         return oneUser;
     }
+
+    /**
+     * 根据电话号码查找用户
+     * @param phone 电话号码
+     * @return UserDto
+     */
+    public  UserDto findUserByPhone(String phone){
+        User user = userRepository.findByPhone(phone);
+        UserDto oneUser = UserMapper.INSTANCE.findOneUser(user);
+        return oneUser;
+    }
+
+    /**
+     * 根据电话号码查找用户
+     * @param email 电子邮件
+     * @return UserDto
+     */
+    public  UserDto findUserByEmail(String email){
+        User user = userRepository.findByEmail(email);
+        UserDto oneUser = UserMapper.INSTANCE.findOneUser(user);
+        return oneUser;
+    }
+
 
 }

@@ -25,4 +25,12 @@ public class Role {
     @Column
     private String desc;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
 }
