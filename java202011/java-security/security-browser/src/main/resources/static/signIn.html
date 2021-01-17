@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- import CSS -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	</head>
+	<body>
+		<div id="app">
+			<el-container>
+				<el-main>
+					<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="ruleForm">
+						<el-form-item label="账号" prop="username">
+							<el-input type="input" v-model="ruleForm.username" autocomplete="off"></el-input>
+						</el-form-item>
+						<el-form-item label="密码" prop="password">
+							<el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+						</el-form-item>
+
+						<el-form-item >
+							<el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+							<el-button @click="resetForm('ruleForm')">重置</el-button>
+						</el-form-item>
+					</el-form>
+					<el-main>
+			</el-container>
+		</div>
+	</body>
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: function() {
+				let validateAccount = (rule, value, callback) => {
+					if (!value) {
+						return callback(new Error('请输入账号'));
+					}
+				};
+				let validatePass = (rule, value, callback) => {
+					if (!value) {
+						return callback(new Error('请输入密码'));
+					}
+				};
+				return {
+					ruleForm: {
+						username: '',
+						password: '',
+					},
+					rules: {
+						username: [{
+							validator: validateAccount,
+							trigger: 'blur'
+						}],
+						password: [{
+							validator: validatePass,
+							trigger: 'blur'
+						}],
+					}
+				}
+			},
+			methods: {
+				submitForm(formName) {
+					let that = this;
+					this.$refs[formName].validate((valid) => {
+						if (valid) {
+						} else {
+							console.log('error submit!!');
+							return false;
+						}
+					});
+				},
+				resetForm(formName) {
+					this.$refs[formName].resetFields();
+				}
+			}
+		})
+	</script>
+	
+	<style scoped>
+		.ruleForm{
+			width: 500px;
+			margin: 50px auto;
+		}
+	</style>
+</html>

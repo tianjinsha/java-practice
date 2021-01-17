@@ -1,5 +1,9 @@
 package org.example.core.protocol;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -7,23 +11,10 @@ import java.io.Serializable;
  * @description TODO
  * @date 2020/11/22 17:28
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommonBean implements Serializable {
     private String code;
     private String message;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

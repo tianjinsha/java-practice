@@ -19,7 +19,9 @@ public enum ResultEnum {
      */
     Timeout(2,"timeout");
 
-    ResultEnum(int i, String success) {
+    ResultEnum(int result, String message) {
+        this.result =result;
+        this.message = message;
     }
 
     private int result;

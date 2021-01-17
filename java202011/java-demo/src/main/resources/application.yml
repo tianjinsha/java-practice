@@ -1,6 +1,6 @@
 security:
   basic:
-    enabled: false
+    enabled: true
 
 spring:
   session:

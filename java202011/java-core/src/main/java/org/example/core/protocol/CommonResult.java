@@ -1,5 +1,8 @@
 package org.example.core.protocol;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.core.constant.ResultEnum;
 
 /**
@@ -7,51 +10,14 @@ import org.example.core.constant.ResultEnum;
  * @description TODO
  * @date 2020/11/21 23:04
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommonResult {
 
     private int result = ResultEnum.Success.getResult();
-    private long timestamp;
+    private long timestamp = System.currentTimeMillis();
     private String  command;
     private String message = ResultEnum.Success.getMessage();
     private CommonBean param;
-
-    public int getResult() {
-        return result;
-    }
-
-    public void setResult(int result) {
-        this.result = result;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getCommand() {
-        return command;
-    }
-
-    public void setCommand(String command) {
-        this.command = command;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public CommonBean getParam() {
-        return param;
-    }
-
-    public void setParam(CommonBean param) {
-        this.param = param;
-    }
 }
