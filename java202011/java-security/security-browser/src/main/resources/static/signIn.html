@@ -3,86 +3,66 @@
 	<head>
 		<meta charset="UTF-8">
 		<!-- import CSS -->
-		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<link href="./js/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
-		<div id="app">
-			<el-container>
-				<el-main>
-					<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="ruleForm">
-						<el-form-item label="账号" prop="username">
-							<el-input type="input" v-model="ruleForm.username" autocomplete="off"></el-input>
-						</el-form-item>
-						<el-form-item label="密码" prop="password">
-							<el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
-						</el-form-item>
-
-						<el-form-item >
-							<el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
-							<el-button @click="resetForm('ruleForm')">重置</el-button>
-						</el-form-item>
-					</el-form>
-					<el-main>
-			</el-container>
+		<div class="container">
+			<form class="form-contaiter" id="loginForm" action="/authentication/form" method="post">
+				<div class="form-group form-inline">
+					<label for="username" class="mr-1">账号</label>
+					<input type="input" class="form-control" id="username"  name="username" placeholder="">
+				</div>
+				<div class="form-group form-inline">
+					<label for="pwd" class="mr-1">密码</label>
+					<input type="password" class="form-control" id="pwd"  name="password" placeholder="">
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="checkbox">记住我</input>
+					</label>
+				</div>
+				<button type="submit" class="btn btn-primary mt-2">登录</button>
+			</form>
 		</div>
 	</body>
-	<!-- import Vue before Element -->
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<!-- import JavaScript -->
-	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+	<!-- import jquery -->
+	<script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+	<script src="./js/jquery-validation-1.17.0/localization/messages_zh.js"></script>
+	<!-- import bootstrap -->
+	<script src="./js/bootstrap-4.4.1/js/bootstrap.min.js"></script>
 	<script>
-		new Vue({
-			el: '#app',
-			data: function() {
-				let validateAccount = (rule, value, callback) => {
-					if (!value) {
-						return callback(new Error('请输入账号'));
-					}
-				};
-				let validatePass = (rule, value, callback) => {
-					if (!value) {
-						return callback(new Error('请输入密码'));
-					}
-				};
-				return {
-					ruleForm: {
-						username: '',
-						password: '',
+		$().ready(function() {
+			$("#loginForm").validate({
+				rules: {
+					username: "required",
+					password: {
+						required: true,
+						minlength: 6
 					},
-					rules: {
-						username: [{
-							validator: validateAccount,
-							trigger: 'blur'
-						}],
-						password: [{
-							validator: validatePass,
-							trigger: 'blur'
-						}],
-					}
-				}
-			},
-			methods: {
-				submitForm(formName) {
-					let that = this;
-					this.$refs[formName].validate((valid) => {
-						if (valid) {
-						} else {
-							console.log('error submit!!');
-							return false;
-						}
-					});
 				},
-				resetForm(formName) {
-					this.$refs[formName].resetFields();
+				messages: {
+					username: "请输入账号",
+					password: {
+						required: "请输入密码",
+						minlength: "密码长度不能小于6个字符"
+					},
 				}
-			}
-		})
+			})
+		});
 	</script>
-	
-	<style scoped>
-		.ruleForm{
-			width: 500px;
-			margin: 50px auto;
+
+	<style>
+		.form-contaiter {
+			margin-top: 6.25rem;
+		}
+		
+		input.error { border: 1px solid #EA5200; }
+		label.error {
+		  padding-left: 16px;
+		
+		  color: #EA5200;
 		}
 	</style>
 </html>

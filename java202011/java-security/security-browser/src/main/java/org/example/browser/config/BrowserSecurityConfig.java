@@ -33,7 +33,9 @@ public class BrowserSecurityConfig extends AbstractWebSecurityConfig {
                         securityProperties.getLoginPage(),
                         securityProperties.getLoginProcessUrl(),
                         securityProperties.getLoginMobileProcessUrl(),
-                        securityProperties.getSignFailUrl()
+                        securityProperties.getSignFailUrl(),
+                        "/js/**",
+                        "/css/**"
                 )
                 .permitAll()
                 .anyRequest()
