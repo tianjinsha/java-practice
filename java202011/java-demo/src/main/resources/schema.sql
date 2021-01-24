@@ -54,3 +54,17 @@ CREATE TABLE `user_role` (
   CONSTRAINT `user_role` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `role_user` FOREIGN KEY (`role_code`) REFERENCES `role` (`code`)
 ) DEFAULT CHARSET=utf8;
+
+
+
+-- ----------------------------
+-- Table structure for persistent_logins
+-- ----------------------------
+DROP TABLE IF EXISTS `persistent_logins`;
+CREATE TABLE `persistent_logins` (
+  `username` varchar(64)  NOT NULL,
+  `series` varchar(64)  NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`series`)
+) DEFAULT CHARSET=utf8;

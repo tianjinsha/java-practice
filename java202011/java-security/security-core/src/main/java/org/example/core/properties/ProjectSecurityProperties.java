@@ -19,7 +19,7 @@ public class ProjectSecurityProperties {
 
     private ValidateCodeProperties code = new ValidateCodeProperties();
 
-    private String loginType = LoginResponseType.JSON.name();
+    private String responseType = ResponseType.JSON.name();
 
     private String signInUrl=SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
 
@@ -34,5 +34,7 @@ public class ProjectSecurityProperties {
     private String loginProcessUrl=SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM;
 
     private String loginMobileProcessUrl = SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE;
+
+    private int rememberMeSeconds=7200;
 
 };

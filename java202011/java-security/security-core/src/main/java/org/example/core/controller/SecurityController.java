@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.core.constant.CommonErrorCodeBase;
 import org.example.core.constant.ResultEnum;
 import org.example.core.properties.ProjectSecurityProperties;
+import org.example.core.properties.ResponseType;
 import org.example.core.protocol.CommonBean;
 import org.example.core.protocol.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +48,7 @@ public class SecurityController {
         if (savedRequest != null) {
             String targetUrl = savedRequest.getRedirectUrl();
             log.info("认证失败，引发跳转的请求是:" + targetUrl);
-            if (StringUtils.endsWithIgnoreCase(targetUrl, ".html")) {
+            if (securityProperties.getResponseType().equals(ResponseType.HTML.name())) {
                 redirectStrategy.sendRedirect(request, response, securityProperties.getSignInUrl());
             }
         }
@@ -59,7 +61,7 @@ public class SecurityController {
         result.setCommand(service);
         CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED,"认证失败!");
         result.setParam(bean);
-
         return  result;
     }
+
 }

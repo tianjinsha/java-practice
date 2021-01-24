@@ -6,11 +6,11 @@ package org.example.core.properties;
  * FileName: LoginResponseType
  * Description:
  */
-public enum LoginResponseType {
+public enum ResponseType {
     /**
      * 跳转
      */
-    REDIRECT,
+    HTML,
 
     /**
      * 返回json

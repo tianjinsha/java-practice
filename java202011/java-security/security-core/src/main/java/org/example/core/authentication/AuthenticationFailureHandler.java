@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.example.core.constant.CommonErrorCodeBase;
 import org.example.core.constant.ResultEnum;
-import org.example.core.properties.LoginResponseType;
+import org.example.core.properties.ResponseType;
 import org.example.core.properties.ProjectSecurityProperties;
 import org.example.core.protocol.CommonBean;
 import org.example.core.protocol.CommonResult;
@@ -38,7 +38,7 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
             throws IOException, ServletException {
-        if (LoginResponseType.JSON.name().equals(securityProperties.getLoginType())) {
+        if (ResponseType.JSON.name().equals(securityProperties.getResponseType())) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setHeader("Content-Type", "application/json;charset=utf-8");
             CommonResult result = new CommonResult();

@@ -3,7 +3,7 @@ package org.example.core.authentication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.example.core.constant.CommonErrorCodeBase;
-import org.example.core.properties.LoginResponseType;
+import org.example.core.properties.ResponseType;
 import org.example.core.properties.ProjectSecurityProperties;
 import org.example.core.protocol.CommonBean;
 import org.example.core.protocol.CommonResult;
@@ -36,7 +36,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws ServletException, IOException {
-        if (LoginResponseType.JSON.equals(securityProperties.getLoginType())) {
+        if (ResponseType.JSON.equals(securityProperties.getResponseType())) {
             response.setHeader("Content-Type", "application/json;charset=utf-8");
             CommonResult result = new CommonResult();
             CommonBean bean = new CommonBean(CommonErrorCodeBase.SUCCESS,"登录成功!");
