@@ -14,7 +14,7 @@ import javax.servlet.Filter;
  * @description TODO
  * @date 2021/1/24 15:14
  */
-@Component
+@Component("validateCodeSecurityConfig")
 public class ValidateCodeSecurityConfig  extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
     @Autowired

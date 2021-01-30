@@ -39,7 +39,7 @@ public class ValidateCode implements Serializable {
      *
      * @return
      */
-    public boolean isExpried() {
+    public boolean isExpired() {
         return LocalDateTime.now().isAfter(expireTime);
     }
 }

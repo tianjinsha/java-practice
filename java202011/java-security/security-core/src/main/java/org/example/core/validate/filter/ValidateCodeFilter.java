@@ -31,7 +31,7 @@ import java.util.Set;
  * @date 2021/1/24 15:16
  */
 @Slf4j
-@Component
+@Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
 
     @Autowired

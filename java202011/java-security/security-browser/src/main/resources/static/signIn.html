@@ -2,24 +2,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<!-- import CSS -->
-		<link href="./js/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="rooter" style="opacity: 0;">
 			<div class="card">
 				<form id="loginForm" action="/authentication/form" method="post">
 					<div class="form-group form-inline">
 						<label for="username" class="form-label">账 号</label>
-						<input type="input" class="form-control" id="username" name="username" placeholder="" required>
+						<input type="input" class="form-control" id="username" name="username" required>
 					</div>
 					<div class="form-group form-inline">
 						<label for="pwd" class="form-label">密 码</label>
-						<input type="password" class="form-control" id="pwd" name="password" autocomplete="off" placeholder="" required>
+						<input type="password" class="form-control" id="pwd" name="password" autocomplete="off" required>
 					</div>
 					<div class="form-group form-inline  form-code">
 						<label for="code" class="form-label">验证码</label>
-						<input type="input" class="form-control" id="code" name="code" maxlength="4" autocomplete="off" placeholder="" required>
+						<input type="input" class="form-control" id="code" name="imageCode"  autocomplete="off" required>
 						<img id="codeImg" class="rounded ml-2" src="/code/image">
 					</div>
 					<div class="form-check">
@@ -33,14 +31,28 @@
 		</div>
 	</body>
 
+	<script  src="./js/nprogress/nprogress.js"></script>
+	<link href="./js/nprogress/nprogress.css" rel="stylesheet">
+	<!-- import CSS -->
+	<link href="./js/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<!-- import jquery -->
-	<script src="./js/jquery-3.2.1.min.js"></script>
-	<script src="./js/jquery-validation-1.17.0/jquery.validate.min.js"></script>
-	<script src="./js/jquery-validation-1.17.0/localization/messages_zh.js"></script>
+	<script  src="./js/jquery-3.2.1.min.js"></script>
+	<script  src="./js/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+	<script  src="./js/jquery-validation-1.17.0/localization/messages_zh.js"></script>
 	<!-- import bootstrap -->
-	<script src="./js/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+	<script  src="./js/bootstrap-4.4.1/js/bootstrap.min.js"></script>
 	<script>
+		NProgress.inc();
+		document.onreadystatechange = function(){
+			if (document.readyState == "complete") {
+				 $("#rooter").animate({
+					 opacity:"1"
+				 });
+				  NProgress.done();
+			}
+		}
 		$().ready(function() {
+			//验证表单
 			$("#loginForm").validate({
 				errorPlacement: function(error, element) {
 					// Append error within linked label
@@ -57,9 +69,9 @@
 						required: true,
 						minlength: 6
 					},
-					code: {
+					imageCode: {
 						required: true,
-						 rangelength:[4,4]
+						rangelength:[4,4]
 					},
 				},
 				messages: {
@@ -68,13 +80,14 @@
 						required: "请输入密码",
 						minlength: "密码长度不能小于6个字符"
 					},
-					code:{
+					imageCode:{
 						required: "请输入验证码",
 						rangelength: "验证码长度不正确"
 					}
 				}
 			})
 
+			//切换验证码	
 			$("#codeImg").click(function() {
 				$('#codeImg').attr("src", "/code/image?" + Math.random());
 			});
