@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container" id="rooter" style="opacity: 0;">
+			<div class="card">
+				<form id="loginForm" action="/authentication/mobile" method="post">
+					<div class="form-group form-inline">
+						<label for="mobile" class="form-label">手机号</label>
+						<input type="tel" class="form-control" id="mobile" name="mobile" required>
+					</div>
+
+					<div class="form-group form-inline  form-code">
+						<label for="code" class="form-label">验证码</label>
+						<input type="input" class="form-control" id="code" name="smsCode" autocomplete="off">
+						<button id="smsCode" type="button" class="btn btn-primary ml-2">点击发送</button>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input" name="remember-me" type="checkbox">记住我</input>
+						</label>
+					</div>
+					<button type="submit" id="submitBtn" class="btn btn-primary btn-block mt-2 ">登 录</button>
+				</form>
+			</div>
+		</div>
+	</body>
+
+	<script src="./js/nprogress/nprogress.js"></script>
+	<link href="./js/nprogress/nprogress.css" rel="stylesheet">
+	<!-- import CSS -->
+	<link href="./js/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- import jquery -->
+	<script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+	<script src="./js/jquery-validation-1.17.0/localization/messages_zh.js"></script>
+	<!-- import bootstrap -->
+	<script src="./js/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+	<script>
+		NProgress.inc();
+		document.onreadystatechange = function() {
+			if (document.readyState == "complete") {
+				$("#rooter").animate({
+					opacity: "1"
+				});
+				NProgress.done();
+			}
+		}
+		jQuery.validator.addMethod("phone", function(value, element) {
+			let length = value.length;
+			let mobile = /^(1)\d{10}$/;
+			return this.optional(element) || (length == 11 && mobile.test(value));
+		}, "请填写正确的手机号码");
+		$().ready(function() {
+
+			//验证表单
+			$("#loginForm").validate({
+				errorPlacement: function(error, element) {
+					// Append error within linked label
+					$(element)
+						.closest("form")
+						.find("#" + element.attr("id"))
+						.parent()
+						.append(error);
+				},
+				submitHandler: function(form) {
+					form.submit();
+				},
+				ignore: ".ignore",
+				debug: true,
+				rules: {
+					mobile: {
+						required: true,
+						phone: true
+					},
+					smsCode: {
+						required: true,
+						rangelength: [6, 6]
+					},
+				},
+				messages: {
+					mobile: {
+						required: "请输入手机号码",
+						phone: "请填写正确的手机号码",
+					},
+					smsCode: {
+						required: "请输入验证码",
+						rangelength: "验证码长度不正确"
+					}
+				},
+			})
+
+			//切换验证码	
+			$("#smsCode").click(function() {
+				let value = $("mobile").val();
+				$("#code").addClass("ignore")
+				let valid = $("#loginForm").valid();
+
+				if (valid) {
+					$.get("/code/sms?mobile=" + value, function(data, status) {
+						console.log("数据: " + data + "\n状态: " + status);
+						if (status == "success") {
+							(function() {
+								let time = 60;
+								let countDown = setInterval(function() {
+									if (time == 0) {
+										$("#smsCode").addClass("btn-primary");
+										$("#smsCode").removeClass("btn-light");
+										$("#smsCode").text("重新发送")
+										$("#smsCode").removeAttr("disabled")
+										time = 60;
+										clearInterval(countDown)
+									} else {
+										$("#smsCode").removeClass("btn-primary");
+										$("#smsCode").addClass("btn-light");
+										$("#smsCode").attr("disabled", "disabled")
+										$("#smsCode").text(time + "s");
+										time--;
+									}
+								}, 1000)
+							})();
+						}
+					});
+				}
+			});
+
+			$("#submitBtn").click(function() {
+				$("#code").removeClass("ignore");
+				let valid = $("#loginForm").valid();
+				if (valid) {
+					$("#loginForm").submit();
+				}
+			})
+
+		});
+	</script>
+
+	<style>
+		.card {
+			width: 25rem;
+			margin: 3.125rem auto 0;
+			padding: 1.875rem;
+		}
+
+		.form-inline input {
+			flex: 1 0 auto;
+		}
+
+		.form-inline .form-label {
+			width: 3.75rem;
+			justify-content: left !important;
+		}
+
+		.form-code input {
+			width: 6.25rem !important;
+		}
+
+		#smscode {
+			width: 6.875rem;
+		}
+
+		input.error {
+			border: 1px solid #EA5200;
+
+		}
+
+		label.error {
+			padding-left: 3.75rem;
+			color: #EA5200;
+		}
+	</style>
+</html>

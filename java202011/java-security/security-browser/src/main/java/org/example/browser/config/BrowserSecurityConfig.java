@@ -1,10 +1,12 @@
 package org.example.browser.config;
 
+import org.example.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import org.example.core.config.AbstractWebSecurityConfig;
 import org.example.core.properties.ProjectSecurityProperties;
 import org.example.core.properties.SecurityConstants;
 import org.example.core.validate.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,6 +27,7 @@ public class BrowserSecurityConfig extends AbstractWebSecurityConfig {
     @Autowired
     public ProjectSecurityProperties securityProperties;
 
+    @Qualifier("accountUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -37,6 +40,12 @@ public class BrowserSecurityConfig extends AbstractWebSecurityConfig {
     @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
+    /**
+     * 短信验证码配置器
+     */
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
 
 
     @Override
@@ -45,6 +54,8 @@ public class BrowserSecurityConfig extends AbstractWebSecurityConfig {
 
         http
                 .apply(validateCodeSecurityConfig)
+                .and()
+                .apply(smsCodeAuthenticationSecurityConfig)
                 .and()
                 .rememberMe()
                 .tokenRepository(persistentTokenRepository())

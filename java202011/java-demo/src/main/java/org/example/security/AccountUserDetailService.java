@@ -21,9 +21,9 @@ import java.util.List;
  * @description TODO
  * @date 2020/11/21 21:57
  */
-@Component
 @Slf4j
-public class OwnUserDetailServices implements UserDetailsService {
+@Component("accountUserDetailsService")
+public class AccountUserDetailService implements UserDetailsService {
 
     @Autowired
     UserService userService;

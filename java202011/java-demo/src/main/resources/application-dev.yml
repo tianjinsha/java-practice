@@ -28,3 +28,4 @@ logging:
 project:
   security:
     responseType: HTML
+    signInUrl: /mobile-login.html

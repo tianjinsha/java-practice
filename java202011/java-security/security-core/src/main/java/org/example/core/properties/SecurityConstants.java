@@ -28,7 +28,7 @@ public class SecurityConstants {
     /**
      * 默认登录页面
      */
-    public static final String DEFAULT_LOGIN_PAGE_URL = "/signIn.html";
+    public static final String DEFAULT_LOGIN_PAGE_URL = "/account-login.html";
 
     /**
      * 默认失败页面

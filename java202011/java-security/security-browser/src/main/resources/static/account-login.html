@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container" id="rooter" style="opacity: 0;">
+			<div class="card">
+				<form id="loginForm" action="/authentication/form" method="post">
+					<div class="form-group form-inline">
+						<label for="username" class="form-label">账 号</label>
+						<input type="input" class="form-control" id="username" name="username" required>
+					</div>
+					<div class="form-group form-inline">
+						<label for="pwd" class="form-label">密 码</label>
+						<input type="password" class="form-control" id="pwd" name="password" autocomplete="off" required>
+					</div>
+					<div class="form-group form-inline  form-code">
+						<label for="code" class="form-label">验证码</label>
+						<input type="input" class="form-control" id="code" name="imageCode"  autocomplete="off" required>
+						<img id="imageCode" class="rounded ml-2" src="/code/image">
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input" name="remember-me" type="checkbox">记住我</input>
+						</label>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block mt-2 ">登 录</button>
+				</form>
+			</div>
+		</div>
+	</body>
+
+	<script  src="./js/nprogress/nprogress.js"></script>
+	<link href="./js/nprogress/nprogress.css" rel="stylesheet">
+	<!-- import CSS -->
+	<link href="./js/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- import jquery -->
+	<script  src="./js/jquery-3.2.1.min.js"></script>
+	<script  src="./js/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+	<script  src="./js/jquery-validation-1.17.0/localization/messages_zh.js"></script>
+	<!-- import bootstrap -->
+	<script  src="./js/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+	<script>
+		NProgress.inc();
+		document.onreadystatechange = function(){
+			if (document.readyState == "complete") {
+				 $("#rooter").animate({
+					 opacity:"1"
+				 });
+				  NProgress.done();
+			}
+		}
+		$().ready(function() {
+			//验证表单
+			$("#loginForm").validate({
+				errorPlacement: function(error, element) {
+					// Append error within linked label
+					$(element)
+						.closest("form")
+						.find("#"+element.attr("id"))
+						.parent()
+						.append(error);
+				},
+				rules: {
+					username: "required",
+					password: {
+						required: true,
+						minlength: 6
+					},
+					imageCode: {
+						required: true,
+						rangelength:[4,4]
+					},
+				},
+				messages: {
+					username: "请输入账号",
+					password: {
+						required: "请输入密码",
+						minlength: "密码长度不能小于6个字符"
+					},
+					imageCode:{
+						required: "请输入验证码",
+						rangelength: "验证码长度不正确"
+					}
+				}
+			})
+
+			//切换验证码	
+			$("#imageCode").click(function() {
+				$('this').attr("src", "/code/image?" + Math.random());
+			});
+
+		});
+	</script>
+
+	<style>
+		.card {
+			width: 25rem;
+			margin: 3.125rem auto 0;
+			padding: 1.875rem;
+		}
+
+		.form-inline input {
+			flex: 1 0 auto;
+		}
+
+		.form-inline .form-label {
+			width: 3.75rem;
+			justify-content: left !important;
+		}
+
+		.form-code input {
+			width: 6.25rem !important;
+		}
+
+		.form-code img {
+			width: 6.875rem;
+			height: 2.5rem;
+			cursor: pointer;
+		}
+
+		input.error {
+			border: 1px solid #EA5200;
+
+		}
+		label.error {
+			padding-left: 3.75rem;
+			color: #EA5200;
+		}
+	</style>
+</html>
