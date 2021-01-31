@@ -12,7 +12,8 @@
         <module>java-core</module>
         <module>java-common</module>
         <module>java-security</module>
-        <module>java-demo</module>
+        <module>java-browser-demo</module>
+        <module>java-app-demo</module>
     </modules>
 
     <properties>

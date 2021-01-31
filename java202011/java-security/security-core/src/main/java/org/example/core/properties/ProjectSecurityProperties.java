@@ -19,6 +19,8 @@ public class ProjectSecurityProperties {
 
     private ValidateCodeProperties code = new ValidateCodeProperties();
 
+    private JwtProperties jwt = new JwtProperties();
+
     private String responseType = ResponseType.JSON.name();
 
     private String signInUrl=SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
