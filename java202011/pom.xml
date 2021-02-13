@@ -14,6 +14,7 @@
         <module>java-security</module>
         <module>java-browser-demo</module>
         <module>java-app-demo</module>
+        <module>java-jdbc</module>
     </modules>
 
     <properties>

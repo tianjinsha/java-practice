@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.mapper.UserMapper;
+import org.example.jdbc.mapper.UserMapper;
 import org.junit.Test;
 
 /**

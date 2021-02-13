@@ -4,7 +4,6 @@ import org.example.core.annotation.MethodAnnotation;
 import org.example.core.constant.CommonErrorCodeBase;
 import org.example.core.protocol.CommonBean;
 import org.example.core.protocol.CommonResult;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

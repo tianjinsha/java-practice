@@ -1,8 +1,8 @@
 package org.example.security;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.UserDto;
-import org.example.service.UserService;
+import org.example.jdbc.dto.UserDto;
+import org.example.jdbc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

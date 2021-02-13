@@ -1,13 +1,10 @@
 package org.example;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.UserDto;
-import org.example.entity.Role;
-import org.example.entity.User;
-import org.example.repository.RoleRepository;
-import org.example.repository.UserRepository;
-import org.example.service.RoleService;
-import org.example.service.UserService;
+import org.example.jdbc.dto.UserDto;
+import org.example.jdbc.entity.Role;
+import org.example.jdbc.service.RoleService;
+import org.example.jdbc.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

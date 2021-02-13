@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>java-jdbc</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.example.sercurity</groupId>
             <artifactId>security-app</artifactId>
             <version>1.0-SNAPSHOT</version>
