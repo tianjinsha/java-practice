@@ -6,9 +6,12 @@ import org.example.core.authentication.AuthenticationSuccessHandler;
 import org.example.core.authentication.LogoutSuccessHandler;
 import org.example.core.properties.ProjectSecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -45,9 +48,19 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Qualifier("accountUserDetailsService")
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //添加自定义的userDetailsService认证
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     protected void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {
