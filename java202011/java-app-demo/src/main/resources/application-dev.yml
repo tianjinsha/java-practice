@@ -9,6 +9,10 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: 123456
+    #always - embedded - never
+    initialization-mode: never
+    schema: classpath:schema.sql
+    data: classpath:data.sql
   jpa:
     database: h2
     hibernate:
@@ -19,12 +23,52 @@ spring:
     console:
       path: /h2-console
       enabled: true
-
+  redis:
+    host: 192.168.233.135
+    port: 6379
+    password: 123456
+    timeout: 500
+    lettuce:
+      pool:
+        max-active: 8
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1
 logging:
   level:
     org:
       hibernate: INFO
 
+
+
+auth-server-url: http://127.0.0.1:8081
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      scope: all
+      access-token-uri: ${auth-server-url}/oauth/token
+      user-authorization-uri: ${auth-server-url}/oauth/authorize
+    resource:
+      token-info-uri: ${auth-server-url}/oauth/check_token
+
+management:
+  security:
+    enabled: true
+
 project:
   security:
     responseType: JSON
+    oauth2:
+      clients[0]:
+        clientId: client
+        clientSecret: secret
+        accessTokenValidateSeconds: 14400
+        storeType: jwt
+    code:
+      sms:
+        url: /login
+      image:
+        url: /resetPass

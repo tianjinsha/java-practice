@@ -29,6 +29,7 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
     @Override
     public ValidateCode generate(ServletWebRequest servletWebRequest) {
         String sRand = captchaProducer.createText();
+        log.info( "image code:"+sRand);
         BufferedImage image = captchaProducer.createImage(sRand);
         return new ImageCode(image, sRand, securityProperties.getCode().getImage().getExpireIn());
     }

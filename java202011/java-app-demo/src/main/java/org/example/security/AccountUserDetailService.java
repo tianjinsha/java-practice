@@ -1,6 +1,7 @@
 package org.example.security;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.ListUtils;
 import org.example.jdbc.dto.UserDto;
 import org.example.jdbc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -30,13 +32,22 @@ public class AccountUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("登陆用户:" + username);
+        log.info("account 登陆用户:" + username);
         UserDto user = userService.findUserByName(username);
-        List<String> roles = user.getRoles();
-        List<GrantedAuthority> authorities = new ArrayList(roles.size());
-        roles.forEach(item->{
-            authorities.add(new SimpleGrantedAuthority(item));
-        });
-        return new User(username,user.getPassword(),authorities);
+        List<GrantedAuthority> authorities ;
+        String password;
+        if(user != null){
+            List<String> roles = user.getRoles();
+            authorities = new ArrayList(roles.size());
+            roles.forEach(item->{
+                authorities.add(new SimpleGrantedAuthority(item));
+            });
+            password = user.getPassword();
+        }else {
+            throw new UsernameNotFoundException("user not found");
+        }
+
+
+        return new User(username,password,authorities);
     }
 }

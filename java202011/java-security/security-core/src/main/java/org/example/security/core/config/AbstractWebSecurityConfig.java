@@ -42,6 +42,7 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
+    @Qualifier("authenticationEntryPointHandler")
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
 
@@ -52,15 +53,14 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //添加自定义的userDetailsService认证
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     protected void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {

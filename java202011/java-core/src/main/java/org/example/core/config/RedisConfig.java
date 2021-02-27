@@ -3,10 +3,9 @@ package org.example.core.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -22,31 +21,36 @@ import java.io.Serializable;
 @Configuration
 public class RedisConfig {
 
-    @Autowired
-    JedisConnectionFactory  jedisConnectionFactory;
+//    @Autowired
+//    JedisConnectionFactory  jedisConnectionFactory;
+
+//    @Bean
+//    public JedisConnectionFactory jedisConnectionFactory() {
+//
+//    }
 
     @Bean(name="stringRedisTemplate")
-    public RedisTemplate<String,String> stringStringRedisTemplate(){
+    public RedisTemplate<String,String> stringStringRedisTemplate(LettuceConnectionFactory connectionFactory){
         StringRedisTemplate template = new StringRedisTemplate();
-        template.setConnectionFactory(jedisConnectionFactory);
+        template.setConnectionFactory(connectionFactory);
         setSerializer(template);
         template.afterPropertiesSet();
         return  template;
     }
 
     @Bean(name="serializableRedisTemplate")
-    public RedisTemplate<Serializable,Object> serializableRedisTemplate(){
+    public RedisTemplate<Serializable,Object> serializableRedisTemplate(LettuceConnectionFactory connectionFactory){
         RedisTemplate<Serializable,Object>  template= new RedisTemplate<>();
-        template.setConnectionFactory(jedisConnectionFactory);
+        template.setConnectionFactory(connectionFactory);
         setSerializer(template);
         template.afterPropertiesSet();
         return  template;
     }
 
     @Bean(name="objectRedisTemplate")
-    public RedisTemplate<String,Object> objectRedisTemplate(){
+    public RedisTemplate<String,Object> objectRedisTemplate(LettuceConnectionFactory connectionFactory){
         RedisTemplate<String,Object>  template= new RedisTemplate<>();
-        template.setConnectionFactory(jedisConnectionFactory);
+        template.setConnectionFactory(connectionFactory);
         setSerializer(template);
         template.afterPropertiesSet();
         return  template;

@@ -12,6 +12,8 @@ public class CommonErrorCodeBase {
     public static  final String SUCCESS = "0000";
 
 
+    public static final String BAD_REQUEST = "0400";
+
     /**
      * 请求授权失败
      */

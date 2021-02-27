@@ -21,6 +21,12 @@ public class ProjectSecurityProperties {
 
     private JwtProperties jwt = new JwtProperties();
 
+    /**
+     * OAuth2认证服务器配置
+     */
+    private OAuth2Properties oauth2 = new OAuth2Properties();
+
+
     private String responseType = ResponseType.JSON.name();
 
     private String signInUrl=SecurityConstants.DEFAULT_LOGIN_PAGE_URL;

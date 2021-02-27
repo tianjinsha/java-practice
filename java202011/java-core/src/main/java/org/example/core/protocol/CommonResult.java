@@ -13,11 +13,11 @@ import org.example.core.constant.ResultEnum;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommonResult {
+public class CommonResult<T extends CommonBean> {
 
     private int result = ResultEnum.Success.getResult();
     private long timestamp = System.currentTimeMillis();
-    private String  command;
+    private String path;
     private String message = ResultEnum.Success.getMessage();
-    private CommonBean param;
+    private T param;
 }

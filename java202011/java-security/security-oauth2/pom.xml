@@ -9,18 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example.sercurity</groupId>
-    <artifactId>security-app</artifactId>
+    <artifactId>security-oauth2</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.example.sercurity</groupId>
-            <artifactId>sercurity-core</artifactId>
+            <groupId>org.example.security</groupId>
+            <artifactId>security-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <version>${spring-security-jwt.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
+            <version>${jjwt.version}</version>
         </dependency>
     </dependencies>
 

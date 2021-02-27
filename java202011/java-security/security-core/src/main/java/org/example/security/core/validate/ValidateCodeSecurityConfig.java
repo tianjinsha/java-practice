@@ -14,14 +14,14 @@ import javax.servlet.Filter;
  * @description TODO
  * @date 2021/1/24 15:14
  */
-@Component("validateCodeSecurityConfig")
+//@Component("validateCodeSecurityConfig")
 public class ValidateCodeSecurityConfig  extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-    @Autowired
-    private Filter validateCodeFilter;
+//    @Autowired
+//    private Filter validateCodeFilter;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(validateCodeFilter, AbstractPreAuthenticatedProcessingFilter.class);
+//        http.addFilterBefore(validateCodeFilter, AbstractPreAuthenticatedProcessingFilter.class);
     }
 }

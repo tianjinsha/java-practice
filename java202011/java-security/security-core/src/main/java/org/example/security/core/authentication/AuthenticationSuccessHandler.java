@@ -36,12 +36,13 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws ServletException, IOException {
-        if (ResponseType.JSON.equals(securityProperties.getResponseType())) {
+        if (ResponseType.JSON.name().equals(securityProperties.getResponseType())) {
             response.setHeader("Content-Type", "application/json;charset=utf-8");
-            CommonResult result = new CommonResult();
+            CommonResult<CommonBean> result = new CommonResult<>();
             CommonBean bean = new CommonBean(CommonErrorCodeBase.SUCCESS,"登录成功!");
-            result.setCommand(securityProperties.getSignInUrl());
+            result.setPath(securityProperties.getLoginProcessUrl());
             result.setParam(bean);
+            response.getWriter().write(objectMapper.writeValueAsString(result));
             response.getWriter().flush();
         } else {
             super.onAuthenticationSuccess(request, response, authentication);

@@ -2,11 +2,11 @@
 -- Records of user
 -- ----------------------------
 INSERT INTO `user`(`username`,`phone`,`email`,`password`,`is_expired`,`is_locked`,`is_enabled`,`create_time`)
-VALUES ('user1','18780183730','18780183730@163.com','$2a$10$uuCKpsfoExLQI.kwactaVOedhUbt2jYtGPt3sa1oj1DEDq4bw4kW.','0','0','0','2017-06-05 18:30:30');
+VALUES ('user1','18780183730','18780183730@163.com','$2a$10$uN9jRysMRF3RMEtXiPQ5fuhuKSjrjxfYJb/1rBaXtnyzkgjEI4H8u','0','0','0','2017-06-05 18:30:30');
 INSERT INTO `user`(`username`,`phone`,`email`,`password`,`is_expired`,`is_locked`,`is_enabled`,`create_time`)
-VALUES ('user2','18780183731','18780183731@163.com','$2a$10$11uTDUz9ydUMARwJ.GUYkO6uvqgNN.2wCbBW7CCKn4VXMMzlPUvdq','0','0','0','2017-06-05 18:30:30');
+VALUES ('user2','18780183731','18780183731@163.com','$2a$10$Rt9E.VoFHijHLHv2ieq79u/PWjMWzM0iRIxpQxABuLULUnCxx87Qy','0','0','0','2017-06-05 18:30:30');
 INSERT INTO `user`(`username`,`phone`,`email`,`password`,`is_expired`,`is_locked`,`is_enabled`,`create_time`)
-VALUES ('user3','18780183732','18780183732@163.com','$2a$10$bxAbqiCYBinz9p.HfqJFN.ZokggKBRaWBa9g81hp1U.GnoGu7W0/e','0','0','0','2017-06-05 18:30:30');
+VALUES ('user3','18780183732','18780183732@163.com','$2a$10$vC8R86x4sHkQdpn0Grq/Aevx4Wl2hcNz8qLIA9Uw7mJo/a8mH.Xhe','0','0','0','2017-06-05 18:30:30');
 -- ----------------------------
 -- Records of role
 -- ----------------------------

@@ -41,12 +41,13 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
         if (ResponseType.JSON.name().equals(securityProperties.getResponseType())) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setHeader("Content-Type", "application/json;charset=utf-8");
-            CommonResult result = new CommonResult();
+            CommonResult<CommonBean> result = new CommonResult<>();
             result.setResult(ResultEnum.Fail.getResult());
             result.setMessage(ResultEnum.Fail.getMessage());
-            CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED, "授权失败!");
-            result.setCommand(securityProperties.getSignInUrl());
+            CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED, exception.getMessage());
+            result.setPath(securityProperties.getLoginProcessUrl());
             result.setParam(bean);
+            response.getWriter().write(objectMapper.writeValueAsString(result));
             response.getWriter().flush();
         }else{
             setDefaultFailureUrl(securityProperties.getSignFailUrl());

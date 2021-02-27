@@ -76,11 +76,11 @@ public class AbstractSessionStrategy {
             message = message + "，如果密码泄露，请立即修改密码";
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType("application/json;charset=UTF-8");
-            CommonResult result = new CommonResult();
+            CommonResult<CommonBean> result = new CommonResult<>();
             result.setResult(ResultEnum.Fail.getResult());
             result.setMessage(ResultEnum.Fail.getMessage());
             CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED, message);
-            result.setCommand(request.getRequestURI());
+            result.setPath(request.getRequestURI());
             result.setParam(bean);
             response.getWriter().flush();
             response.getWriter().write(objectMapper.writeValueAsString(result));

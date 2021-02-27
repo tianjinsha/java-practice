@@ -1,6 +1,6 @@
 package org.example.security.app.protocol;
 
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.core.protocol.CommonBean;
 
 /**
@@ -8,7 +8,8 @@ import org.example.core.protocol.CommonBean;
  * @description TODO
  * @date 2021/2/9 15:46
  */
-@NoArgsConstructor
+@Setter
+@Getter
 public class JwtTokenBean extends CommonBean {
     String token;
 
@@ -16,4 +17,5 @@ public class JwtTokenBean extends CommonBean {
         super(code,message);
         this.token = token;
     }
+
 }

@@ -31,7 +31,7 @@ public class MobileUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("登陆电话号码:" + username);
+        log.info("mobile 登陆用户:" + username);
         UserDto user = userService.findUserByPhone(username);
         List<String> roles = user.getRoles();
         List<GrantedAuthority> authorities = new ArrayList(roles.size());

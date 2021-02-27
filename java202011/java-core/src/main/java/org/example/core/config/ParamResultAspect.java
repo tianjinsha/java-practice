@@ -42,7 +42,7 @@ public class ParamResultAspect {
             object = point.proceed();
             if(object instanceof CommonResult){
                 result = (CommonResult) object;
-                result.setCommand(annotation.name());
+                result.setPath(annotation.name());
                 result.setTimestamp(System.currentTimeMillis());
                 return  result;
             }

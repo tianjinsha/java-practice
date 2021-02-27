@@ -25,7 +25,7 @@ import java.io.IOException;
  * @description TODO
  * @date 2021/1/24 12:58
  */
-@Component
+@Component("authenticationEntryPointHandler")
 public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint {
 
     @Autowired
@@ -46,11 +46,11 @@ public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint
         if (ResponseType.JSON.name().equals(securityProperties.getResponseType())) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setHeader("Content-Type", "application/json;charset=utf-8");
-            CommonResult result = new CommonResult();
+            CommonResult<CommonBean> result = new CommonResult<>();
             result.setResult(ResultEnum.Fail.getResult());
             result.setMessage(ResultEnum.Fail.getMessage());
-            result.setCommand(request.getRequestURI());
-            CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED, "未登录，无法访问该资源");
+            result.setPath(request.getRequestURI());
+            CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED, "未认证，无法访问该资源!");
             result.setParam(bean);
             response.getWriter().write(objectMapper.writeValueAsString(result));
             response.getWriter().flush();

@@ -13,13 +13,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.example.sercurity</groupId>
-            <artifactId>sercurity-core</artifactId>
+            <groupId>org.example.security</groupId>
+            <artifactId>security-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
+            <version>${spring-session.version}</version>
         </dependency>
     </dependencies>
 

@@ -37,16 +37,16 @@ public class AccessDeniedHandler extends AccessDeniedHandlerImpl {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-
+        response.setStatus(HttpStatus.FORBIDDEN.value());
         if (ResponseType.JSON.name().equals(securityProperties.getResponseType())) {
-            response.setStatus(HttpStatus.FORBIDDEN.value());
             response.setHeader("Content-Type", "application/json;charset=utf-8");
-            CommonResult result = new CommonResult();
+            CommonResult<CommonBean> result = new CommonResult<>();
             result.setResult(ResultEnum.Fail.getResult());
             result.setMessage(ResultEnum.Fail.getMessage());
-            result.setCommand(request.getRequestURI());
-            CommonBean bean = new CommonBean(CommonErrorCodeBase.FORBIDDEN, "权限不足!");
+            result.setPath(request.getRequestURI());
+            CommonBean bean = new CommonBean(CommonErrorCodeBase.FORBIDDEN, "权限不足,无法访问该资源!");
             result.setParam(bean);
+            response.getWriter().write(objectMapper.writeValueAsString(result));
             response.getWriter().flush();
         }else{
             super.handle(request, response, accessDeniedException);

@@ -18,9 +18,9 @@ public class IndexController {
 
     @MethodAnnotation(name = "ping")
     @RequestMapping("/ping")
-    public CommonResult ping (){
+    public CommonResult<CommonBean> ping (){
         System.out.println("ping success");
-        CommonResult result = new CommonResult();
+        CommonResult<CommonBean> result = new CommonResult<>();
         CommonBean commonBean= new CommonBean();
         commonBean.setCode(CommonErrorCodeBase.SUCCESS);
         commonBean.setMessage("ping success");
@@ -30,8 +30,8 @@ public class IndexController {
 
     @MethodAnnotation(name = "result")
     @RequestMapping("/result")
-    public CommonResult result(){
-        CommonResult result = new CommonResult();
+    public CommonResult<CommonBean> result(){
+        CommonResult<CommonBean> result = new CommonResult<>();
         return  result;
     }
 

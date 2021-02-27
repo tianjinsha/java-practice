@@ -31,7 +31,7 @@ import java.util.Set;
  * @date 2021/1/24 15:16
  */
 @Slf4j
-@Component("validateCodeFilter")
+//@Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
 
     @Autowired
@@ -54,7 +54,12 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     /**
      * 存放所有需要校验验证码的url
      */
-    private Map<String, ValidateCodeType> urlMap = new HashMap<>();
+    private final  Map<String, ValidateCodeType> urlMaps;
+
+    protected ValidateCodeFilter(){
+        super();
+        urlMaps = new HashMap<>(8);
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -66,6 +71,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
                         .validate(new ServletWebRequest(request, response));
                 log.info("验证码校验通过");
             } catch (ValidateCodeException exception) {
+                log.info("验证码校验不通过");
                 authenticationFailureHandler.onAuthenticationFailure(request, response, exception);
                 return;
             }
@@ -79,10 +85,15 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     @Override
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
-        urlMap.put(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM, ValidateCodeType.IMAGE);
+
+        Object[] objects = urlMaps.entrySet().toArray();
+        System.out.println(objects);
+        System.out.println(objects.length);
+
+        urlMaps.put(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM, ValidateCodeType.IMAGE);
         addUrlToMap(securityProperties.getCode().getImage().getUrl(), ValidateCodeType.IMAGE);
 
-        urlMap.put(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE, ValidateCodeType.SMS);
+        urlMaps.put(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE, ValidateCodeType.SMS);
         addUrlToMap(securityProperties.getCode().getSms().getUrl(), ValidateCodeType.SMS);
     }
 
@@ -96,7 +107,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         if (StringUtils.isNotBlank(urlString)) {
             String[] urls = StringUtils.splitByWholeSeparatorPreserveAllTokens(urlString, ",");
             for (String url : urls) {
-                urlMap.put(url, type);
+                urlMaps.put(url, type);
             }
         }
     }
@@ -111,10 +122,10 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         ValidateCodeType result = null;
 
         if (!StringUtils.equalsIgnoreCase(request.getMethod(), RequestMethod.GET.name())) {
-            Set<String> urls = urlMap.keySet();
+            Set<String> urls = urlMaps.keySet();
             for (String url : urls) {
                 if (pathMatcher.match(url, request.getRequestURI())) {
-                    result = urlMap.get(url);
+                    result = urlMaps.get(url);
                 }
             }
         }

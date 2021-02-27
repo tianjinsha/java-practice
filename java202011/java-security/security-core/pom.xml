@@ -8,8 +8,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.example.sercurity</groupId>
-    <artifactId>sercurity-core</artifactId>
+    <groupId>org.example.security</groupId>
+    <artifactId>security-core</artifactId>
 
     <dependencies>
         <!-- spring-security -->
@@ -25,18 +25,22 @@
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-config</artifactId>
+            <version>${spring-social.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-core</artifactId>
+            <version>${spring-social.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-security</artifactId>
+            <version>${spring-social.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-web</artifactId>
+            <version>${spring-social.version}</version>
         </dependency>
         <!-- 验证码 -->
         <dependency>

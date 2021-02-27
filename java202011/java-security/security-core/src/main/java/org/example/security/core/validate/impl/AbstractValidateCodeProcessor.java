@@ -45,7 +45,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
     public void validate(ServletWebRequest request) {
         ValidateCodeType processorType = getValidateCodeType(request);
         String sessionKey = getSessionKey(request);
-        log.info("sessionKey:"+sessionKey);
+        log.debug("sessionKey:"+sessionKey);
 
         C codeInSession = (C) sessionStrategy.getAttribute(request, sessionKey);
 
@@ -106,7 +106,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
      */
     private ValidateCodeType getValidateCodeType(ServletWebRequest request) {
         String type = StringUtils.substringBefore(getClass().getSimpleName(), "CodeProcessor");
-        log.info("type::"+type);
+        log.debug("validate code  type:"+type);
         return ValidateCodeType.valueOf(type.toUpperCase());
     }
 

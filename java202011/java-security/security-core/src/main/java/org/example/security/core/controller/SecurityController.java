@@ -41,7 +41,7 @@ public class SecurityController {
 
     @RequestMapping("/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    CommonResult requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    CommonResult<CommonBean> requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         DefaultSavedRequest savedRequest = (DefaultSavedRequest) requestCache.getRequest(request, response);
         if (savedRequest != null) {
             String targetUrl = savedRequest.getRedirectUrl();
@@ -50,13 +50,13 @@ public class SecurityController {
                 redirectStrategy.sendRedirect(request, response, securityProperties.getSignInUrl());
             }
         }
-        CommonResult result = new CommonResult();
+        CommonResult<CommonBean> result = new CommonResult<>();
         int a= ResultEnum.Fail.getResult();
         String b= ResultEnum.Fail.getMessage();
         result.setResult(ResultEnum.Fail.getResult());
         result.setMessage(ResultEnum.Fail.getMessage());
         String service = savedRequest.getRequestURI();
-        result.setCommand(service);
+        result.setPath(service);
         CommonBean bean = new CommonBean(CommonErrorCodeBase.UNAUTHORIZED,"认证失败!");
         result.setParam(bean);
         return  result;

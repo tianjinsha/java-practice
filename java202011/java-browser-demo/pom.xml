@@ -10,7 +10,7 @@
     <groupId>com.java</groupId>
     <artifactId>java-browser-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-demo</name>
+    <name>java-browser-demo</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
